@@ -24,6 +24,7 @@
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0644
+  register: new_templates
   with_fileglob:
     - "{{ apache_sites_available_template_path }}/*"
   notify: Restart Apache
@@ -39,6 +40,9 @@
   with_items:
     - "{{ apache_sites_enabled }}"
   notify: Restart Apache
+  when: new_templates.changed
+  tags:
+    - skip_ansible_lint
 
 - name: Apache_httpd | Template apache2.service
   template:
