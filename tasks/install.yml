@@ -1,0 +1,55 @@
+---
+- name: Apache_httpd | Installing prerequisites
+  apt:
+    package: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items: "{{ apache_required_libs }}"
+
+- name: Apache_httpd | Ensure apache group is present
+  group:
+    name: "{{ apache_group }}"
+
+- name: Apache_httpd | Ensure apache user is present
+  user:
+    name: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+
+- name: Apache_httpd | Check Apache version
+  command: apachectl -v
+  register: apache_installed_version
+  changed_when: false
+  failed_when: false
+
+- block:
+  - name: Apache_httpd | Download and extract files
+    unarchive:
+      src: "{{ apache_download_url }}"
+      dest: "{{ apache_build_dir }}"
+      remote_src: yes
+      extra_opts: --strip-components=1
+      owner: "{{ apache_user }}"
+      group: "{{ apache_group }}"
+
+  - name: Apache_httpd | Configure installation
+    command: ./configure --prefix={{ apache_install_dir }}
+    args:
+      chdir: "{{ apache_build_dir }}"
+
+  - name: Apache_httpd | Make
+    make:
+      chdir: "{{ apache_build_dir }}"
+
+  - name: Apache_httpd | Install
+    make:
+      chdir: "{{ apache_build_dir }}"
+      target: install
+
+  - name: Apache_httpd | Make apachectl command available
+    file:
+      src: "{{ apache_install_dir }}/bin/apachectl"
+      path: /usr/bin/apachectl
+      state: link
+
+  # Block condition
+  when: apache_installed_version.rc != 0 or apache_version not in apache_installed_version.stdout

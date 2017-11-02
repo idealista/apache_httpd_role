@@ -1,0 +1,11 @@
+---
+- hosts: apache.vm
+  tasks:
+    - name: Install netstat (required for tests)
+      apt:
+        package: net-tools
+        update_cache: true
+
+- hosts: apache.vm
+  roles:
+    - apache_httpd-role

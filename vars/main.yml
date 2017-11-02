@@ -1,0 +1,9 @@
+---
+apache_download_url: http://apache.uvigo.es/httpd/httpd-{{ apache_version }}.tar.bz2
+
+apache_required_libs:
+  - libapr1-dev
+  - libaprutil1-dev
+  - gcc
+  - libpcre3-dev
+  - make

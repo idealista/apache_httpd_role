@@ -1,0 +1,15 @@
+---
+- name: Apache_httpd | Install
+  include: install.yml
+  tags:
+    - install
+
+- name: Apache_httpd | Config
+  include: config.yml
+  tags:
+    - config
+
+- name: Apache_httpd | Service
+  include: service.yml
+  tags:
+    - service

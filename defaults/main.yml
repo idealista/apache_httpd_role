@@ -1,0 +1,42 @@
+---
+apache_user: www-data
+apache_group: www-data
+
+apache_version: 2.4.29
+
+apache_build_dir: /tmp
+apache_install_dir: /etc/apache2
+apache_port: 80
+apache_document_root: "{{ apache_install_dir }}/htdocs"
+apache_logs_dir: /var/log/apache2
+apache_admin_mail: root@localhost
+apache_server_name: myawesomeweb.com
+
+apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-available"
+apache_sites_enabled:
+  - example1.conf
+
+# The list of default modules can be found on:
+# http://httpd.apache.org/docs/2.4/en/mod/#A
+apache_default_modules_enabled:
+  - authn_file
+  - authn_core
+  - authz_host
+  - authz_groupfile
+  - authz_user
+  - authz_core
+  - access_compat
+  - auth_basic
+  - reqtimeout
+  - filter
+  - mime
+  - log_config
+  - env
+  - headers
+  - setenvif
+  - version
+  - unixd
+  - status
+  - autoindex
+  - dir
+  - alias

@@ -1,0 +1,8 @@
+---
+
+- name: Apache_httpd | Configure httpd service
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+    daemon_reload: yes
