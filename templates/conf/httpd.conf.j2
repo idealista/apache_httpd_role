@@ -418,3 +418,9 @@ Include conf/extra/proxy-html.conf
 SSLRandomSeed startup builtin
 SSLRandomSeed connect builtin
 </IfModule>
+
+# Include generic snippets of statements
+IncludeOptional conf/conf-enabled/*.conf
+
+# Include the virtual host configurations:
+IncludeOptional conf/sites-enabled/*.conf
