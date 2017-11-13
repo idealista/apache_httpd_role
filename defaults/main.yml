@@ -16,6 +16,13 @@ apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-a
 apache_sites_enabled:
   - example1.conf
 
+# mod_jk
+apache_modjk_install: true
+apache_modjk_prerrequisites:
+  - autoconf
+  - libtool-bin
+apache_modjk_url: http://apache.rediris.es/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.42-src.tar.gz
+
 # The list of default modules can be found on:
 # http://httpd.apache.org/docs/2.4/en/mod/#A
 apache_default_modules_enabled:
