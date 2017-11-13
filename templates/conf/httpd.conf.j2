@@ -50,7 +50,7 @@ ServerRoot "{{ apache_install_dir }}"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
-Listen {{ apache_port }}
+Listen 0.0.0.0:{{ apache_port }}
 
 #
 # Dynamic Shared Object (DSO) Support
