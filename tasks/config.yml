@@ -38,7 +38,7 @@
   with_items:
     - "{{ apache_sites_enabled }}"
   notify: Restart Apache
-  # when: new_templates.changed
+  when: new_templates.changed
   tags:
     - skip_ansible_lint
 
@@ -51,17 +51,9 @@
     mode: 0755
   with_items:
     - "{{ apache_sites_enabled }}"
-  # when: new_templates.changed
+  when: new_templates.changed
   tags:
     - skip_ansible_lint
-
-# - debug:
-#     msg: "{{ item }}"
-#   # with_fileglob:
-#   #   - "{{ apache_files_path }}/*"
-#   with_filetree: "{{ apache_files_path }}/"
-#   when: item.state == 'directory'
-
 
 - name: Apache_httpd | Copy virtualhost files (provided by playbooks)
   copy:
@@ -71,8 +63,7 @@
     group: "{{ apache_group }}"
     mode: 0755
   with_filetree: "{{ apache_files_path }}/"
-  # when: item.state == 'file' and new_templates.changed
-  when: item.state == 'file'
+  when: item.state == 'file' and new_templates.changed
 
 - name: Apache_httpd | Template apache2.service
   template:
