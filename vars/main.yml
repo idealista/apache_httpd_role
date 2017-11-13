@@ -7,3 +7,5 @@ apache_required_libs:
   - gcc
   - libpcre3-dev
   - make
+
+apache_modjk_version: 1.2.42

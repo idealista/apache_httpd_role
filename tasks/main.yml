@@ -4,6 +4,12 @@
   tags:
     - install
 
+- name: Apache_httpd | Install mod_jk
+  include: install_modjk.yml
+  tags:
+    - install
+  when: apache_modjk_install
+
 - name: Apache_httpd | Config
   include: config.yml
   tags:

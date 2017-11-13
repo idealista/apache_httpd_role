@@ -1,0 +1,29 @@
+- name: Apache_httpd | Install mod_jk prerequisites
+  apt:
+    package: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items: "{{ apache_modjk_prerrequisites }}"
+
+- name: Apache_httpd | Download mod_jk
+  unarchive:
+    src: "{{ apache_modjk_url }}"
+    dest: "/tmp"
+    remote_src: yes
+
+- name: Apache_httpd | Create configure script
+  command: ./buildconf.sh
+  args:
+    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src
+
+- name: Apache_httpd | Configure mod_jk
+  command: ./configure -with-apxs={{ apache_install_dir }}/bin/apxs
+  args:
+    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src
+
+- name: Apache_httpd | Make mod_jk
+  make:
+    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src
+
+# TO-DO: copy and configure mod_jk in Apache configuration
+- name: Apache_httpd | Copy mod_jk to
