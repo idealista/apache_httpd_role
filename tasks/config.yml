@@ -64,6 +64,8 @@
     mode: 0755
   with_filetree: "{{ apache_files_path }}/"
   when: item.state == 'file' and new_templates.changed
+  tags:
+    - skip_ansible_lint
 
 - name: Apache_httpd | Template apache2.service
   template:
