@@ -13,7 +13,7 @@ apache_admin_mail: root@localhost
 apache_server_name: myawesomeweb.com
 
 apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-available"
-apache_files_path: "{{ playbook_dir }}/files"
+apache_files_path: "{{ playbook_dir }}/apache/files"
 apache_sites_enabled:
   - example1
 
