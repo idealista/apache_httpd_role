@@ -21,7 +21,7 @@ apache_modjk_install: true
 apache_modjk_prerrequisites:
   - autoconf
   - libtool-bin
-apache_modjk_url: http://apache.rediris.es/tomcat/tomcat-connectors/jk/tomcat-connectors-{{ apache_modjk_version }}-src.tar.gz
+apache_modjk_version: 1.2.42
 ## If configuration for mod_jk is provided, this needs to be done in a file under files/mod_jk folder in our playbook directory
 ## and these variables have to be set to true and to the name of such configuration file
 apache_modjk_conf: false
