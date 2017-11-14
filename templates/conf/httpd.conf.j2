@@ -50,7 +50,7 @@ ServerRoot "{{ apache_install_dir }}"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
-Listen {{ apache_port }}
+Listen 0.0.0.0:{{ apache_port }}
 
 #
 # Dynamic Shared Object (DSO) Support
@@ -425,3 +425,9 @@ LoadModule jk_module modules/mod_jk.so
 {% if apache_modjk_conf %}
 Include conf/extra/{{ apache_modjk_conf_file }}
 {% endif %}
+
+# Include generic snippets of statements
+IncludeOptional conf/conf-enabled/*.conf
+
+# Include the virtual host configurations:
+IncludeOptional conf/sites-enabled/*.conf
