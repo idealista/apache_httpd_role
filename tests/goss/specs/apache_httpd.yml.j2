@@ -1,0 +1,32 @@
+http:
+  http://localhost:{{ apache_port }}:
+    status: 200
+  http://localhost:{{ apache_port }}/example1/:
+    status: 200
+    body:
+      - "idealista is awesome"
+
+service:
+  apache2:
+    enabled: true
+    running: true
+
+file:
+  /lib/systemd/system/apache2.service:
+    owner: {{ apache_user }}
+    group: {{ apache_group }}
+    exists: true
+
+user:
+  {{ apache_user }}:
+    exists: true
+    groups:
+      - {{ apache_group }}
+
+group:
+  {{ apache_group }}:
+    exists: true
+
+port:
+  tcp:80:
+    listening: true

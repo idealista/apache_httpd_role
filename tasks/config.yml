@@ -6,16 +6,14 @@
     dest: "{{ apache_install_dir }}/conf/httpd.conf"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
-    # mode:
   notify: Restart Apache
 
-- name: Apache_httpd | Create sites-available and sites-enabled folders
+- name: Apache_httpd | Create additional configuration folders
   file:
     dest: "{{ apache_install_dir }}/conf/{{ item }}"
     state: directory
   with_items:
-    - sites-available
-    - sites-enabled
+    - "{{ apache_additional_config_folders }}"
 
 - name: Apache_httpd | Copy sites-available templates (provided by playbooks)
   template:
@@ -23,22 +21,51 @@
     dest: "{{ apache_install_dir }}/conf/sites-available/{{ item | basename }}"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
-    mode: 0644
+    mode: 0640
+  register: new_templates
   with_fileglob:
     - "{{ apache_sites_available_template_path }}/*"
   notify: Restart Apache
 
 - name: Apache_httpd | Add symlink in sites-enabled
   file:
-    src: "{{ apache_install_dir }}/conf/sites-available/{{ item }}"
-    dest: "{{ apache_install_dir }}/conf/sites-enabled/{{ item }}"
+    src: "{{ apache_install_dir }}/conf/sites-available/{{ item }}.conf"
+    dest: "{{ apache_install_dir }}/conf/sites-enabled/{{ item }}.conf"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
-    mode: 0644
+    mode: 0640
     state: link
   with_items:
     - "{{ apache_sites_enabled }}"
   notify: Restart Apache
+  when: new_templates.changed
+  tags:
+    - skip_ansible_lint
+
+- name: Apache_httpd | Create virtualhost folders
+  file:
+    dest: "{{ apache_document_root }}/{{ item }}"
+    state: directory
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0755
+  with_items:
+    - "{{ apache_sites_enabled }}"
+  when: new_templates.changed
+  tags:
+    - skip_ansible_lint
+
+- name: Apache_httpd | Copy virtualhost files (provided by playbooks)
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ apache_document_root }}/{{ item.path }}"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0755
+  with_filetree: "{{ apache_files_path }}/"
+  when: item.state == 'file' and new_templates.changed
+  tags:
+    - skip_ansible_lint
 
 - name: Apache_httpd | Template apache2.service
   template:
@@ -46,5 +73,4 @@
     dest: /lib/systemd/system/apache2.service
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
-    # mode:
   notify: Restart Apache
