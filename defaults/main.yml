@@ -13,8 +13,14 @@ apache_admin_mail: root@localhost
 apache_server_name: myawesomeweb.com
 
 apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-available"
+apache_files_path: "{{ playbook_dir }}/apache/files"
 apache_sites_enabled:
-  - example1.conf
+  - example1
+
+apache_additional_config_folders:
+  - sites-available
+  - sites-enabled
+  - conf-enabled
 
 # The list of default modules can be found on:
 # http://httpd.apache.org/docs/2.4/en/mod/#A
@@ -40,3 +46,6 @@ apache_default_modules_enabled:
   - autoindex
   - dir
   - alias
+  - proxy
+  - proxy_connect
+  - proxy_http
