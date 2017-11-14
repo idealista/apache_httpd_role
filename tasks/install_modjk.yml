@@ -10,16 +10,19 @@
     src: "{{ apache_modjk_url }}"
     dest: "/tmp"
     remote_src: yes
+  changed_when: false
 
 - name: Apache_httpd | Create configure script
   command: ./buildconf.sh
   args:
     chdir: "{{ apache_modjk_build_dir }}"
+  changed_when: false
 
 - name: Apache_httpd | Configure mod_jk
   command: ./configure -with-apxs={{ apache_install_dir }}/bin/apxs
   args:
     chdir: "{{ apache_modjk_build_dir }}"
+  changed_when: false
 
 - name: Apache_httpd | Make mod_jk
   make:
