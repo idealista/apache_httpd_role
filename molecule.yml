@@ -15,8 +15,9 @@ molecule:
     - .vagrant
     - .molecule
 
-  # directory to look for testinfra tests
-  testinfra_dir: tests
+  # directory to look for goss tests
+  goss_dir: tests/goss
+  goss_playbook: verifier.yml
 
   # directory containing group_vars to use with ansible
   group_vars: ../tests/group_vars
@@ -51,7 +52,7 @@ vagrant:
   instances:
     - name: apache.vm
       ansible_groups:
-        - test
+        - apache
       interfaces:
         - network_name: private_network
           type: dhcp
@@ -59,13 +60,11 @@ vagrant:
 
 docker:
   containers:
-    - name: apache.vm
+    - name: apache.cont
       ansible_groups:
-        - test
+        - apache
       image: geerlingguy/docker-debian8-ansible
       image_version: latest
-      port_bindings:
-        80: 8888
       privileged: True
       cap_add:
         - SYS_ADMIN
@@ -73,9 +72,5 @@ docker:
         - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
       command: '/lib/systemd/systemd'
 
-# verifier configuration
 verifier:
-  name: testinfra
-  options:
-    connection: ansible
-    ansible-inventory: .molecule/ansible_inventory
+  name: goss

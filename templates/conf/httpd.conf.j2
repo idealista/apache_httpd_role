@@ -419,6 +419,13 @@ SSLRandomSeed startup builtin
 SSLRandomSeed connect builtin
 </IfModule>
 
+{% if apache_modjk_install %}
+LoadModule jk_module modules/mod_jk.so
+{% endif %}
+{% if apache_modjk_conf %}
+Include conf/extra/{{ apache_modjk_conf_file }}
+{% endif %}
+
 # Include generic snippets of statements
 IncludeOptional conf/conf-enabled/*.conf
 
