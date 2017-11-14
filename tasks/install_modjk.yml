@@ -14,16 +14,39 @@
 - name: Apache_httpd | Create configure script
   command: ./buildconf.sh
   args:
-    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src
+    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
 
 - name: Apache_httpd | Configure mod_jk
   command: ./configure -with-apxs={{ apache_install_dir }}/bin/apxs
   args:
-    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src
+    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
 
 - name: Apache_httpd | Make mod_jk
   make:
-    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src
+    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
 
-# TO-DO: copy and configure mod_jk in Apache configuration
-- name: Apache_httpd | Copy mod_jk to
+- name: Apache_httpd | Copy mod_jk to Apache modules folder
+  copy:
+    src: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native/apache-2.0/mod_jk.so
+    dest: "{{ apache_install_dir }}/modules/mod_jk.so"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    remote_src: true
+
+- name: Apache_httpd | Copy mod_jk configuration file
+  copy:
+    src: files/mod_jk/{{ apache_modjk_conf_file }}
+    dest: "{{ apache_install_dir }}/conf/extra/{{ apache_modjk_conf_file }}"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0640
+  when: apache_modjk_conf
+
+- name: Apache_httpd | Copy mod_jk workers properties file
+  copy:
+    src: files/mod_jk/{{ apache_modjk_workers_properties_file }}
+    dest: "{{ apache_install_dir }}/conf/extra/{{ apache_modjk_workers_properties_file }}"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0640
+  when: apache_modjk_workers_properties
