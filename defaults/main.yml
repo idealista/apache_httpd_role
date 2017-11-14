@@ -13,7 +13,7 @@ apache_admin_mail: root@localhost
 apache_server_name: myawesomeweb.com
 
 apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-available"
-apache_files_path: "{{ playbook_dir }}/apache/files"
+apache_files_path: "{{ playbook_dir }}/files/apache"
 apache_sites_enabled:
   - example1
 
@@ -23,7 +23,7 @@ apache_additional_config_folders:
   - conf-enabled
 
 # mod_jk variables
-apache_modjk_install: true
+apache_modjk_install: false
 apache_modjk_prerrequisites:
   - autoconf
   - libtool-bin
