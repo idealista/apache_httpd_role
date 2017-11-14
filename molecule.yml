@@ -65,8 +65,6 @@ docker:
         - apache
       image: geerlingguy/docker-debian8-ansible
       image_version: latest
-      port_bindings:
-        80: 8888
       privileged: True
       cap_add:
         - SYS_ADMIN
