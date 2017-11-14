@@ -16,12 +16,18 @@ apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-a
 apache_sites_enabled:
   - example1.conf
 
-# mod_jk
+# mod_jk variables
 apache_modjk_install: true
 apache_modjk_prerrequisites:
   - autoconf
   - libtool-bin
 apache_modjk_url: http://apache.rediris.es/tomcat/tomcat-connectors/jk/tomcat-connectors-{{ apache_modjk_version }}-src.tar.gz
+## If configuration for mod_jk is provided, this needs to be done in a file under files/mod_jk folder in our playbook directory
+## and these variables have to be set to true and to the name of such configuration file
+apache_modjk_conf: false
+apache_modjk_conf_file:
+apache_modjk_workers_properties: false
+apache_modjk_workers_properties_file:
 
 # The list of default modules can be found on:
 # http://httpd.apache.org/docs/2.4/en/mod/#A
