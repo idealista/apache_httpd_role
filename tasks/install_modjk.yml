@@ -14,20 +14,20 @@
 - name: Apache_httpd | Create configure script
   command: ./buildconf.sh
   args:
-    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
+    chdir: "{{ apache_modjk_build_dir }}"
 
 - name: Apache_httpd | Configure mod_jk
   command: ./configure -with-apxs={{ apache_install_dir }}/bin/apxs
   args:
-    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
+    chdir: "{{ apache_modjk_build_dir }}"
 
 - name: Apache_httpd | Make mod_jk
   make:
-    chdir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
+    chdir: "{{ apache_modjk_build_dir }}"
 
 - name: Apache_httpd | Copy mod_jk to Apache modules folder
   copy:
-    src: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native/apache-2.0/mod_jk.so
+    src: "{{ apache_modjk_build_dir }}/apache-2.0/mod_jk.so"
     dest: "{{ apache_install_dir }}/modules/mod_jk.so"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
