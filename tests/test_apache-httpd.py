@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 
 @pytest.fixture()
@@ -22,3 +23,11 @@ def test_apache_services(File, Service, Socket, AnsibleDefaults):
     assert Service("apache2").is_enabled
     assert Service("apache2").is_running
     assert Socket("tcp://0.0.0.0:" + str(http_port)).is_listening
+
+
+def test_apache_virtualhost():
+    virtualhost_test_text = 'idealista is awesome'
+    virtualhost_request = requests.get('http://apache.vm/example1/')
+
+    assert virtualhost_request.status_code == 200
+    assert virtualhost_test_text in virtualhost_request.text
