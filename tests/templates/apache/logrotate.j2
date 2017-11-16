@@ -1,0 +1,12 @@
+{{ apache_logs_dir }}*.log {
+        daily
+        missingok
+        rotate 8
+        compress
+        notifempty
+        create 640 root core
+        sharedscripts
+        postrotate
+                /etc/init.d/apache2 graceful > /dev/null
+        endscript
+}
