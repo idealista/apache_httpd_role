@@ -2,7 +2,7 @@
 
 - name: Apache_httpd | Template httpd.conf
   template:
-    src: conf/httpd.conf.j2
+    src: apache/conf/httpd.conf.j2
     dest: "{{ apache_install_dir }}/conf/httpd.conf"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
@@ -14,6 +14,14 @@
     state: directory
   with_items:
     - "{{ apache_additional_config_folders }}"
+
+- name: Apache_httpd | Ensure logs folder exists
+  file:
+    dest: "{{ apache_logs_dir }}"
+    state: directory
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0755
 
 - name: Apache_httpd | Copy sites-available templates (provided by playbooks)
   template:
@@ -69,7 +77,7 @@
 
 - name: Apache_httpd | Template apache2.service
   template:
-    src: service/apache2.service.j2
+    src: apache/service/apache2.service.j2
     dest: /lib/systemd/system/apache2.service
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
