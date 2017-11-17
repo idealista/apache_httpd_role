@@ -63,7 +63,7 @@ docker:
     - name: apache.cont
       ansible_groups:
         - apache
-      image: geerlingguy/docker-debian8-ansible
+      image: geerlingguy/docker-debian9-ansible
       image_version: latest
       privileged: True
       cap_add:

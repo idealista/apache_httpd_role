@@ -6,6 +6,11 @@
     cache_valid_time: 86400
   with_items: "{{ apache_required_libs }}"
 
+- name: Apache_httpd | Install logrotate (if wanted)
+  apt:
+    package: logrotate
+  when: apache_logrotate_enabled
+
 - name: Apache_httpd | Ensure apache group is present
   group:
     name: "{{ apache_group }}"
