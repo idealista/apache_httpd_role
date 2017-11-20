@@ -30,7 +30,6 @@
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0640
-  register: new_templates
   with_fileglob:
     - "{{ apache_sites_available_template_path }}/*"
   notify: Restart Apache
@@ -46,9 +45,6 @@
   with_items:
     - "{{ apache_sites_enabled }}"
   notify: Restart Apache
-  when: new_templates.changed
-  tags:
-    - skip_ansible_lint
 
 - name: Apache_httpd | Create virtualhost folders
   file:
@@ -59,9 +55,6 @@
     mode: 0755
   with_items:
     - "{{ apache_sites_enabled }}"
-  when: new_templates.changed
-  tags:
-    - skip_ansible_lint
 
 - name: Apache_httpd | Copy virtualhost files (provided by playbooks)
   copy:
@@ -71,9 +64,7 @@
     group: "{{ apache_group }}"
     mode: 0755
   with_filetree: "{{ apache_virtualhosts_files_path }}/"
-  when: item.state == 'file' and new_templates.changed
-  tags:
-    - skip_ansible_lint
+  when: item.state == 'file'
 
 - name: Apache_httpd | Template apache2.service
   template:
