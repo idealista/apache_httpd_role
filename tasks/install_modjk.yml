@@ -29,7 +29,7 @@
     chdir: "{{ apache_modjk_build_dir }}"
 
 - name: Apache_httpd | Copy mod_jk to Apache modules folder
-  copy:
+  template:
     src: "{{ apache_modjk_build_dir }}/apache-2.0/mod_jk.so"
     dest: "{{ apache_install_dir }}/modules/mod_jk.so"
     owner: "{{ apache_user }}"
@@ -37,7 +37,7 @@
     remote_src: true
 
 - name: Apache_httpd | Copy mod_jk configuration file
-  copy:
+  template:
     src: "{{ apache_modjk_playbook_files_dir }}/{{ apache_modjk_conf_file }}"
     dest: "{{ apache_install_dir }}/conf/extra/{{ apache_modjk_conf_file }}"
     owner: "{{ apache_user }}"
