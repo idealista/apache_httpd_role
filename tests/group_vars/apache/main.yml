@@ -1,2 +1,33 @@
 ---
 apache_modjk_install: true
+
+apache_extra_libs:
+  - zlib1g-dev
+apache_configure_extra_params: "--enable-deflate"
+
+apache_default_modules_enabled:
+  - authn_file
+  - authn_core
+  - authz_host
+  - authz_groupfile
+  - authz_user
+  - authz_core
+  - access_compat
+  - auth_basic
+  - reqtimeout
+  - filter
+  - mime
+  - log_config
+  - env
+  - headers
+  - setenvif
+  - version
+  - unixd
+  - status
+  - autoindex
+  - dir
+  - alias
+  - proxy
+  - proxy_connect
+  - proxy_http
+  - deflate
