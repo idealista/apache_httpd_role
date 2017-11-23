@@ -8,6 +8,9 @@ apache_build_dir: /tmp
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 
+apache_extra_libs:
+apache_configure_extra_params:
+
 apache_port: 80
 apache_document_root: "{{ apache_install_dir }}/htdocs"
 apache_admin_mail: root@localhost
