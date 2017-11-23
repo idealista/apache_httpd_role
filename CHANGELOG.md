@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
 ### Added
 - *Template mod_jk configuration files* @jnogol
+### Changed
+- *[#18](https://github.com/idealista/apache_httpd-role/issues/18) Modules prerrequisites are now installed. Changed the use of ./configure command* @jnogol
+
 ## [1.1.0](https://github.com/idealista/apache_httpd-role/tree/1.1.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.0.0...1.1.0)
 ### Added

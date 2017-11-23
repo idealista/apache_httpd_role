@@ -6,7 +6,12 @@
     cache_valid_time: 86400
   with_items: "{{ apache_required_libs }}"
 
-- name: Apache_httpd | Install logrotate (if wanted)
+- name: Apache_httpd | Installing extra libs (if needed)
+  apt:
+    package: "{{ item }}"
+  with_items: "{{ apache_extra_libs }}"
+
+- name: Apache_httpd | Install logrotate (if needed)
   apt:
     package: logrotate
   when: apache_logrotate_enabled
@@ -36,8 +41,13 @@
       owner: "{{ apache_user }}"
       group: "{{ apache_group }}"
 
+  - name: Apache_httpd | Define compile-time options
+    set_fact:
+      apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
+    with_items: "{{ apache_default_modules_enabled }}"
+
   - name: Apache_httpd | Configure installation
-    command: ./configure --prefix={{ apache_install_dir }}
+    command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
     args:
       chdir: "{{ apache_build_dir }}"
 
