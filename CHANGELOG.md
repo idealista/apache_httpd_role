@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
-
+### Changed
+- *[#18](https://github.com/idealista/apache_httpd-role/issues/18) Modules prerrequisites are now installed. Changed the use of ./configure command* @jnogol
 ## [1.1.0](https://github.com/idealista/apache_httpd-role/tree/1.1.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.0.0...1.1.0)
 ### Added
