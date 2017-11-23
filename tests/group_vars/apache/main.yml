@@ -3,7 +3,6 @@ apache_modjk_install: true
 
 apache_extra_libs:
   - zlib1g-dev
-apache_configure_extra_params: "--enable-deflate"
 
 apache_default_modules_enabled:
   - authn_file
