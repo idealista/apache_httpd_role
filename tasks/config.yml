@@ -2,7 +2,7 @@
 
 - name: Apache_httpd | Template httpd.conf
   template:
-    src: conf/httpd.conf.j2
+    src: apache/conf/httpd.conf.j2
     dest: "{{ apache_install_dir }}/conf/httpd.conf"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
@@ -15,6 +15,14 @@
   with_items:
     - "{{ apache_additional_config_folders }}"
 
+- name: Apache_httpd | Ensure logs folder exists
+  file:
+    dest: "{{ apache_logs_dir }}"
+    state: directory
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0755
+
 - name: Apache_httpd | Copy sites-available templates (provided by playbooks)
   template:
     src: "{{ item }}"
@@ -22,7 +30,6 @@
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0640
-  register: new_templates
   with_fileglob:
     - "{{ apache_sites_available_template_path }}/*"
   notify: Restart Apache
@@ -38,9 +45,6 @@
   with_items:
     - "{{ apache_sites_enabled }}"
   notify: Restart Apache
-  when: new_templates.changed
-  tags:
-    - skip_ansible_lint
 
 - name: Apache_httpd | Create virtualhost folders
   file:
@@ -51,9 +55,6 @@
     mode: 0755
   with_items:
     - "{{ apache_sites_enabled }}"
-  when: new_templates.changed
-  tags:
-    - skip_ansible_lint
 
 - name: Apache_httpd | Copy virtualhost files (provided by playbooks)
   copy:
@@ -62,15 +63,29 @@
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0755
-  with_filetree: "{{ apache_files_path }}/"
-  when: item.state == 'file' and new_templates.changed
-  tags:
-    - skip_ansible_lint
+  with_filetree: "{{ apache_virtualhosts_files_path }}/"
+  when: item.state == 'file'
 
 - name: Apache_httpd | Template apache2.service
   template:
-    src: service/apache2.service.j2
+    src: apache/service/apache2.service.j2
     dest: /lib/systemd/system/apache2.service
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
   notify: Restart Apache
+
+- name: Apache_httpd | Template logrotate
+  template:
+    src: apache/logrotate.j2
+    dest: /etc/logrotate.d/apache2
+    mode: 0644
+  when: apache_logrotate_enabled
+
+- name: Apache_httpd | Create a crontab for logrotate
+  cron:
+    name: "Logrotate"
+    hour: "{{ apache_logrotate_cron_settings.hour}}"
+    minute: "{{ apache_logrotate_cron_settings.minute }}"
+    user: "{{ apache_logrotate_cron_settings.user }}"
+    job: "/usr/sbin/logrotate /etc/logrotate.conf > /dev/null 2>&1"
+  when: apache_logrotate_enabled

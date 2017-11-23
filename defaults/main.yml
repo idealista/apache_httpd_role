@@ -6,38 +6,30 @@ apache_version: 2.4.29
 
 apache_build_dir: /tmp
 apache_install_dir: /etc/apache2
+apache_logs_dir: /var/log/apache2
+
+apache_extra_libs:
+
 apache_port: 80
 apache_document_root: "{{ apache_install_dir }}/htdocs"
-apache_logs_dir: /var/log/apache2
 apache_admin_mail: root@localhost
 apache_server_name: myawesomeweb.com
 
-apache_sites_available_template_path: "{{ playbook_dir }}/templates/conf/sites-available"
-apache_files_path: "{{ playbook_dir }}/files/apache"
-apache_sites_enabled:
-  - example1
+apache_virtualhosts_files_path: "{{ playbook_dir }}/files/apache/virtualhosts"
 
+# Sites available/enabled variables
 apache_additional_config_folders:
   - sites-available
   - sites-enabled
   - conf-enabled
+apache_sites_available_template_path: "{{ playbook_dir }}/templates/apache/conf/sites-available"
+apache_sites_enabled:
+  - example1
 
-# mod_jk variables
-apache_modjk_install: false
-apache_modjk_prerrequisites:
-  - autoconf
-  - libtool-bin
-apache_modjk_version: 1.2.42
-apache_modjk_build_dir: /tmp/tomcat-connectors-{{ apache_modjk_version }}-src/native
-## If configuration for mod_jk is provided, this needs to be done in a file under files/mod_jk folder in our playbook directory
-## and these variables have to be set to true and to the name of such configuration file
-apache_modjk_conf: false
-apache_modjk_conf_file:
-apache_modjk_workers_properties: false
-apache_modjk_workers_properties_file:
-
-# The list of default modules can be found on:
-# http://httpd.apache.org/docs/2.4/en/mod/#A
+# Modules
+## Default modules
+### The list of default modules can be found on:
+### http://httpd.apache.org/docs/2.4/en/mod/#A
 apache_default_modules_enabled:
   - authn_file
   - authn_core
@@ -63,3 +55,23 @@ apache_default_modules_enabled:
   - proxy
   - proxy_connect
   - proxy_http
+
+## mod_jk variables
+apache_modjk_install: false # Set to true to install mod_jk
+apache_modjk_prerrequisites:
+  - autoconf
+  - libtool-bin
+apache_modjk_version: 1.2.42
+apache_modjk_download_dir: /tmp
+apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
+### If configuration for mod_jk is provided, this needs to be done in a file under {{ apache_modjk_playbook_files_dir }} folder in our playbook directory
+### and these variables have to be set to true and to the name of such configuration file
+apache_modjk_playbook_files_dir: "{{ playbook_dir }}/templates/apache/mod_jk"
+apache_modjk_conf: false # Set true to copy a mod_jk config file
+apache_modjk_conf_file: # Name and extension of this file
+apache_modjk_workers_properties: false # Set true to copy a mod_jk workers properties file
+apache_modjk_workers_properties_file: # Name and extension of this file
+
+## logrotate variables
+apache_logrotate_enabled: true
+apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}
