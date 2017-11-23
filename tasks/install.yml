@@ -41,8 +41,13 @@
       owner: "{{ apache_user }}"
       group: "{{ apache_group }}"
 
+  - name: Apache_httpd | Define compile-time options
+    set_fact:
+      apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
+    with_items: "{{ apache_default_modules_enabled }}"
+
   - name: Apache_httpd | Configure installation
-    command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_extra_params }}
+    command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
     args:
       chdir: "{{ apache_build_dir }}"
 
