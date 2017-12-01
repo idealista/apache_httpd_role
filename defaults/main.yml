@@ -8,6 +8,9 @@ apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 
+apache_rewrites_template_src_folder: "{{ playbook_dir }}/templates/apache/rewrites"
+apache_rewrites_template_dest_folder: "{{ apache_install_dir }}/conf"
+
 apache_extra_libs:
 
 apache_port: 80
