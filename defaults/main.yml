@@ -4,7 +4,7 @@ apache_group: www-data
 
 apache_version: 2.4.29
 
-apache_build_dir: /tmp
+apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 
@@ -62,7 +62,7 @@ apache_modjk_prerrequisites:
   - autoconf
   - libtool-bin
 apache_modjk_version: 1.2.42
-apache_modjk_download_dir: /tmp
+apache_modjk_download_dir: /tmp/build_modjk
 apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
 ### If configuration for mod_jk is provided, this needs to be done in a file under {{ apache_modjk_playbook_files_dir }} folder in our playbook directory
 ### and these variables have to be set to true and to the name of such configuration file

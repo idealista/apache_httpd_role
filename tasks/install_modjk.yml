@@ -5,6 +5,11 @@
     cache_valid_time: 86400
   with_items: "{{ apache_modjk_prerrequisites }}"
 
+- name: Apache_httpd | Ensure mod_jk build directory
+  file:
+    path: "{{ apache_modjk_download_dir }}"
+    state: directory
+
 - name: Apache_httpd | Download mod_jk
   unarchive:
     src: "{{ apache_modjk_url }}"
