@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+
+## [1.3.0](https://github.com/idealista/apache_httpd-role/tree/1.3.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.2.0...1.3.0)
 ### Added
 - *[#1](https://github.com/idealista/apache_httpd-role/issues/1) Add TravisCI* @jnogol
 - *[#24](https://github.com/idealista/apache_httpd-role/issues/24) Optional rewrites file* @jnogol
