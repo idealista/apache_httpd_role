@@ -1,5 +1,4 @@
 ---
-
 - name: Apache_httpd | Template httpd.conf
   template:
     src: apache/conf/httpd.conf.j2
@@ -65,6 +64,17 @@
     mode: 0755
   with_filetree: "{{ apache_virtualhosts_files_path }}/"
   when: item.state == 'file'
+  notify: Restart Apache
+
+- name: Apache_httpd | Template rewrites file (provided by playbooks)
+  template:
+    src: "{{ apache_rewrites_template_src }}"
+    dest: "{{ apache_rewrites_template_dest }}"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0644
+  notify: Restart Apache
+  when: apache_rewrites_enabled
 
 - name: Apache_httpd | Template apache2.service
   template:
