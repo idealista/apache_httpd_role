@@ -32,6 +32,11 @@
   failed_when: false
 
 - block:
+  - name: Apache_httpd | Ensure Apache build directory
+    file:
+      path: "{{ apache_build_dir }}"
+      state: directory
+
   - name: Apache_httpd | Download and extract files
     unarchive:
       src: "{{ apache_download_url }}"

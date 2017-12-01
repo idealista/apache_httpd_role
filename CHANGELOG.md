@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
 
+## [1.3.0](https://github.com/idealista/apache_httpd-role/tree/1.3.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.2.0...1.3.0)
+### Added
+- *[#1](https://github.com/idealista/apache_httpd-role/issues/1) Add TravisCI* @jnogol
+- *[#24](https://github.com/idealista/apache_httpd-role/issues/24) Optional rewrites file* @jnogol
+### Fixed
+- *[#21](https://github.com/idealista/apache_httpd-role/issues/21) Playbooks can use their own httpd.conf.j2 template* @jnogol
+
 ## [1.2.0](https://github.com/idealista/apache_httpd-role/tree/1.2.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.1.0...1.2.0)
 ### Added
