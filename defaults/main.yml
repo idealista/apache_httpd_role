@@ -8,6 +8,10 @@ apache_build_dir: /tmp
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 
+apache_rewrites_enabled: false
+apache_rewrites_template_src: "{{ playbook_dir }}/templates/conf/rewrites.txt.j2"
+apache_rewrites_template_dest: "{{ apache_install_dir }}/conf/rewrites.txt"
+
 apache_extra_libs:
 
 apache_port: 80
