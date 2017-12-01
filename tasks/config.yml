@@ -68,13 +68,13 @@
 
 - name: Apache_httpd | Template rewrites file (provided by playbooks)
   template:
-    src: "{{ apache_rewrites_template_src }}"
-    dest: "{{ apache_rewrites_template_dest }}"
+    src: "{{ item }}"
+    dest: "{{ apache_rewrites_template_dest_folder }}/{{ item | basename | splitext |first }}"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0644
   notify: Restart Apache
-  when: apache_rewrites_enabled
+  with_fileglob: "{{ apache_rewrites_template_src_folder }}/*"
 
 - name: Apache_httpd | Template apache2.service
   template:
