@@ -8,9 +8,8 @@ apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 
-apache_rewrites_enabled: false
-apache_rewrites_template_src: "{{ playbook_dir }}/templates/conf/rewrites.txt.j2"
-apache_rewrites_template_dest: "{{ apache_install_dir }}/conf/rewrites.txt"
+apache_rewrites_template_src_folder: "{{ playbook_dir }}/templates/apache/rewrites"
+apache_rewrites_template_dest_folder: "{{ apache_install_dir }}/conf"
 
 apache_extra_libs:
 
