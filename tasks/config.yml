@@ -69,7 +69,7 @@
 - name: Apache_httpd | Template rewrites file (provided by playbooks)
   template:
     src: "{{ item }}"
-    dest: "{{ apache_rewrites_template_dest_folder }}/{{ item | basename | splitext |first }}"
+    dest: "{{ apache_rewrites_template_dest_folder }}/{{ item | basename | splitext | first }}"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0644
