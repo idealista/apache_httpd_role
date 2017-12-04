@@ -431,3 +431,7 @@ IncludeOptional conf/conf-enabled/*.conf
 
 # Include the virtual host configurations:
 IncludeOptional conf/sites-enabled/*.conf
+
+{% if apache_brotli_install %}
+LoadModule brotli_module modules/mod_brotli.so
+{% endif %}
