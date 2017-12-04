@@ -1,8 +1,15 @@
 ---
+- name: Apache_httpd | Check Apache version
+  command: apachectl -v
+  register: apache_installed_version
+  changed_when: false
+  failed_when: false
+
 - name: Apache_httpd | Install
   include: install.yml
   tags:
     - install
+  when: apache_installed_version.rc != 0 or apache_version not in apache_installed_version.stdout or apache_reinstall
 
 - name: Apache_httpd | Install mod_jk
   include: install_modjk.yml

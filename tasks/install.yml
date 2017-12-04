@@ -25,51 +25,43 @@
     name: "{{ apache_user }}"
     group: "{{ apache_group }}"
 
-- name: Apache_httpd | Check Apache version
-  command: apachectl -v
-  register: apache_installed_version
-  changed_when: false
-  failed_when: false
+- name: Apache_httpd | Ensure Apache build directory
+  file:
+    path: "{{ apache_build_dir }}"
+    state: directory
 
-- block:
-  - name: Apache_httpd | Ensure Apache build directory
-    file:
-      path: "{{ apache_build_dir }}"
-      state: directory
+- name: Apache_httpd | Download and extract files
+  unarchive:
+    src: "{{ apache_download_url }}"
+    dest: "{{ apache_build_dir }}"
+    remote_src: yes
+    extra_opts: --strip-components=1
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
 
-  - name: Apache_httpd | Download and extract files
-    unarchive:
-      src: "{{ apache_download_url }}"
-      dest: "{{ apache_build_dir }}"
-      remote_src: yes
-      extra_opts: --strip-components=1
-      owner: "{{ apache_user }}"
-      group: "{{ apache_group }}"
+- name: Apache_httpd | Define compile-time options
+  set_fact:
+    apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
+  with_items: "{{ apache_default_modules_enabled }}"
 
-  - name: Apache_httpd | Define compile-time options
-    set_fact:
-      apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
-    with_items: "{{ apache_default_modules_enabled }}"
+- name: Apache_httpd | Configure installation
+  command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
+  args:
+    chdir: "{{ apache_build_dir }}"
+  tags:
+    - skip_ansible_lint
 
-  - name: Apache_httpd | Configure installation
-    command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
-    args:
-      chdir: "{{ apache_build_dir }}"
+- name: Apache_httpd | Make
+  make:
+    chdir: "{{ apache_build_dir }}"
 
-  - name: Apache_httpd | Make
-    make:
-      chdir: "{{ apache_build_dir }}"
+- name: Apache_httpd | Install
+  make:
+    chdir: "{{ apache_build_dir }}"
+    target: install
 
-  - name: Apache_httpd | Install
-    make:
-      chdir: "{{ apache_build_dir }}"
-      target: install
-
-  - name: Apache_httpd | Make apachectl command available
-    file:
-      src: "{{ apache_install_dir }}/bin/apachectl"
-      path: /usr/bin/apachectl
-      state: link
-
-  # Block condition
-  when: apache_installed_version.rc != 0 or apache_version not in apache_installed_version.stdout
+- name: Apache_httpd | Make apachectl command available
+  file:
+    src: "{{ apache_install_dir }}/bin/apachectl"
+    path: /usr/bin/apachectl
+    state: link
