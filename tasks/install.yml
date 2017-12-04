@@ -38,12 +38,12 @@
     extra_opts: --strip-components=1
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
-    
+
 - name: Apache_httpd | Define compile-time options
   set_fact:
     apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
   with_items: "{{ apache_default_modules_enabled }}"
-  
+
 - name: Apache_httpd | Add brotli to compile-time options
   set_fact:
     apache_configure_enable_modules: "{{ apache_configure_enable_modules }} --enable-brotli --with-brotli={{ apache_brotli_lib_path }}"

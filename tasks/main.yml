@@ -4,7 +4,7 @@
   register: apache_installed_version
   changed_when: false
   failed_when: false
-  
+
 - name: Apache_httpd | Install brotli
   include: install_brotli.yml
   tags:
