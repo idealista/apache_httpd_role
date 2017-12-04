@@ -83,6 +83,3 @@ apache_brotli_install: false
 apache_brotli_lib_path: /usr/lib/brotli
 apache_brotli_build_path: /tmp/brotli
 apache_brotli_version: v1.0.2
-apache_brotli_prerrequisites: # In some cases, build_essential is needed as well
-  - git
-  - cmake
