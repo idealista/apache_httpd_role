@@ -30,3 +30,6 @@ apache_default_modules_enabled:
   - proxy_connect
   - proxy_http
   - deflate
+
+apache_brotli_install: true
+apache_brotli_build_path: /build_brotli
