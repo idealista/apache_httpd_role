@@ -78,3 +78,8 @@ apache_modjk_workers_properties_file: # Name and extension of this file
 ## logrotate variables
 apache_logrotate_enabled: true
 apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}
+
+## brotli variables
+apache_brotli_install: false
+apache_brotli_lib_path: /usr/lib/brotli
+apache_brotli_build_path: /tmp/brotli
