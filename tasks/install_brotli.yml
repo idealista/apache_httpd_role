@@ -11,7 +11,7 @@
   git:
     repo: 'https://github.com/google/brotli.git'
     dest: "{{ apache_brotli_build_path }}"
-    version: v1.0.2
+    version: "{{ apache_brotli_version }}"
 
 - name: Apache_httpd | Ensure output brotli folder
   file:
