@@ -17,3 +17,4 @@ apache_brotli_url: https://github.com/google/brotli.git
 apache_brotli_prerrequisites:
   - git
   - cmake
+  - build_essential
