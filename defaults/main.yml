@@ -83,3 +83,6 @@ apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}
 apache_brotli_install: false
 apache_brotli_lib_path: /usr/lib/brotli
 apache_brotli_build_path: /tmp/brotli
+apache_brotli_prerrequisites:
+  - git
+  - cmake
