@@ -1,4 +1,10 @@
 ---
+- name: Apache_httpd | Install brotli
+  include: install_brotli.yml
+  tags:
+    - install
+  when: apache_brotli_install
+
 - name: Apache_httpd | Install
   include: install.yml
   tags:
