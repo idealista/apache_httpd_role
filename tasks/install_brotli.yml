@@ -1,5 +1,5 @@
 ---
-- name: Apache_httpd | Ensure git is installed
+- name: Apache_httpd | Install Brotli prerequisites
   apt:
     name: "{{ item }}"
     update_cache: yes
