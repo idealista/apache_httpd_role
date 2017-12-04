@@ -1,0 +1,39 @@
+---
+- name: Apache_httpd | Ensure git is installed
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+    - "{{ apache_brotli_prerrequisites }}"
+
+- name: Apache_httpd | Download brotli
+  git:
+    repo: 'https://github.com/google/brotli.git'
+    dest: "{{ apache_brotli_build_path }}"
+    version: v1.0.2
+
+- name: Apache_httpd | Ensure output brotli folder
+  file:
+    path: "{{ apache_brotli_build_path }}/out"
+    state: directory
+
+- name: Apache_httpd | Configure-cmake
+  command: ../configure-cmake
+  args:
+    chdir: "{{ apache_brotli_build_path }}/out"
+  changed_when: false
+
+- name: Apache_httpd | Make brotli
+  make:
+    chdir: "{{ apache_brotli_build_path }}/out"
+  changed_when: false
+
+- name: Apache_httpd | Make test and install
+  make:
+    chdir: "{{ apache_brotli_build_path }}/out"
+    target: "{{ item }}"
+  with_items:
+    - test
+    - install
+  changed_when: false
