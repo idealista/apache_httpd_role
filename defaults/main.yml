@@ -63,9 +63,6 @@ apache_default_modules_enabled:
 
 ## mod_jk variables
 apache_modjk_install: false # Set to true to install mod_jk
-apache_modjk_prerrequisites:
-  - autoconf
-  - libtool-bin
 apache_modjk_version: 1.2.42
 apache_modjk_download_dir: /tmp/build_modjk
 apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
@@ -86,6 +83,3 @@ apache_brotli_install: false
 apache_brotli_lib_path: /usr/lib/brotli
 apache_brotli_build_path: /tmp/brotli
 apache_brotli_version: v1.0.2
-apache_brotli_prerrequisites:
-  - git
-  - cmake
