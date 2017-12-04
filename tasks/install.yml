@@ -51,6 +51,11 @@
       apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
     with_items: "{{ apache_default_modules_enabled }}"
 
+  - name: Apache_httpd | Add brotli to compile-time options
+    set_fact:
+      apache_configure_enable_modules: "{{ apache_configure_enable_modules }} --enable-brotli --with-brotli={{ apache_brotli_lib_path }}"
+    when: apache_brotli_install
+
   - name: Apache_httpd | Configure installation
     command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
     args:
