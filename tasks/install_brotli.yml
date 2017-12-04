@@ -9,7 +9,7 @@
 
 - name: Apache_httpd | Download brotli
   git:
-    repo: 'https://github.com/google/brotli.git'
+    repo: "{{ apache_brotli_url }}"
     dest: "{{ apache_brotli_build_path }}"
     version: "{{ apache_brotli_version }}"
 
