@@ -48,6 +48,8 @@
   command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
   args:
     chdir: "{{ apache_build_dir }}"
+  tags:
+    - skip_ansible_lint
 
 - name: Apache_httpd | Make
   make:
