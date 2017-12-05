@@ -1,5 +1,8 @@
 ---
+apache_build_dir: /build_apache
+
 apache_modjk_install: true
+apache_modjk_download_dir: /build_modjk
 
 apache_extra_libs:
   - zlib1g-dev
@@ -30,3 +33,6 @@ apache_default_modules_enabled:
   - proxy_connect
   - proxy_http
   - deflate
+
+apache_brotli_install: true
+apache_brotli_build_path: /build_brotli
