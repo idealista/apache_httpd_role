@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
 
+## [1.4.0](https://github.com/idealista/apache_httpd-role/tree/1.4.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.3.0...1.4.0)
+### Added
+- *[#27](https://github.com/idealista/apache_httpd-role/issues/27) Enable force reinstall* @jnogol
+- *[#29](https://github.com/idealista/apache_httpd-role/issues/29) Add Brotli installation* @jnogol
+
 ## [1.3.0](https://github.com/idealista/apache_httpd-role/tree/1.3.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.2.0...1.3.0)
 ### Added
