@@ -37,3 +37,7 @@
     - test
     - install
   changed_when: false
+
+- name: Apache_httpd | Ldconfig
+  command: ldconfig
+  changed_when: false
