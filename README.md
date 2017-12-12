@@ -85,7 +85,7 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 * **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/apache_httpd-role-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/apache_httpd-role/contributors) who participated in this project.
 
 ## License
 
