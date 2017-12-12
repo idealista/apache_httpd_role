@@ -1,3 +1,4 @@
+---
 - name: Apache_httpd | Install mod_jk prerequisites
   apt:
     package: "{{ item }}"
@@ -32,6 +33,7 @@
 - name: Apache_httpd | Make mod_jk
   make:
     chdir: "{{ apache_modjk_build_dir }}"
+  changed_when: false
 
 - name: Apache_httpd | Copy mod_jk to Apache modules folder
   copy:
