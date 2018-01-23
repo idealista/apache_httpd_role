@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+
+## [1.5.0](https://github.com/idealista/apache_httpd-role/tree/1.5.0)
 ### Added
 - *[#36](https://github.com/idealista/apache_httpd-role/issues/36) Add the ability to configure any file under /etc/apache/conf using provided files or templates* @dortegau
 
