@@ -1,18 +1,37 @@
 ---
-- name: Apache_httpd | Template httpd.conf
-  template:
-    src: apache/conf/httpd.conf.j2
-    dest: "{{ apache_install_dir }}/conf/httpd.conf"
+- name: Apache_httpd | Ensure extra config file and template paths exists
+  file:
+    path: "{{ apache_config_dir }}/{{ item.path }}"
+    state: directory
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
-  notify: Restart Apache
+    mode: 0640
+  with_filetree:
+    - "{{ apache_extra_conf_template_path }}/"
+    - "{{ apache_extra_conf_path }}/"
+  when: item.state == 'directory'
 
-- name: Apache_httpd | Create additional configuration folders
-  file:
-    dest: "{{ apache_install_dir }}/conf/{{ item }}"
-    state: directory
-  with_items:
-    - "{{ apache_additional_config_folders }}"
+- name: Apache_httpd | Copy extra apache config files (provided by playbooks)
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ apache_config_dir }}/{{ item.path }}"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: 0640
+  with_filetree:
+    - "{{ apache_extra_conf_path }}/"
+  when: item.state == "file"
+
+- name: Apache_httpd | Copy extra apache config templates (provided by playbooks)
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ apache_config_dir }}/{{ item.path | splitext | first }}"
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+  with_filetree:
+    - "{{ apache_extra_conf_template_path }}/"
+  when: item.state == 'file'
+  notify: Restart Apache
 
 - name: Apache_httpd | Ensure logs folder exists
   file:
@@ -22,21 +41,20 @@
     group: "{{ apache_group }}"
     mode: 0755
 
-- name: Apache_httpd | Copy sites-available templates (provided by playbooks)
-  template:
-    src: "{{ item }}"
-    dest: "{{ apache_install_dir }}/conf/sites-available/{{ item | basename }}"
+- name: Apache_httpd | Ensure additional config paths exists
+  file:
+    path: "{{ apache_config_dir }}/{{ item }}"
+    state: directory
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0640
-  with_fileglob:
-    - "{{ apache_sites_available_template_path }}/*"
-  notify: Restart Apache
+  with_items:
+    - "{{ apache_additional_config_folders }}"
 
 - name: Apache_httpd | Add symlink in sites-enabled
   file:
-    src: "{{ apache_install_dir }}/conf/sites-available/{{ item }}.conf"
-    dest: "{{ apache_install_dir }}/conf/sites-enabled/{{ item }}.conf"
+    src: "{{ apache_config_dir }}/sites-available/{{ item }}.conf"
+    dest: "{{ apache_config_dir }}/sites-enabled/{{ item }}.conf"
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0640
