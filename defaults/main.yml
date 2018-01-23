@@ -9,6 +9,7 @@ apache_version: 2.4.29
 apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
+apache_config_dir: "{{ apache_install_dir }}/conf"
 
 apache_rewrites_template_src_folder: "{{ playbook_dir }}/templates/apache/rewrites"
 apache_rewrites_template_dest_folder: "{{ apache_install_dir }}/conf"
@@ -21,13 +22,15 @@ apache_admin_mail: root@localhost
 apache_server_name: myawesomeweb.com
 
 apache_virtualhosts_files_path: "{{ playbook_dir }}/files/apache/virtualhosts"
+apache_extra_conf_path: "{{ playbook_dir }}/files/apache/conf"
+apache_extra_conf_template_path: "{{ playbook_dir }}/templates/apache/conf"
 
 # Sites available/enabled variables
 apache_additional_config_folders:
   - sites-available
   - sites-enabled
   - conf-enabled
-apache_sites_available_template_path: "{{ playbook_dir }}/templates/apache/conf/sites-available"
+apache_sites_available_template_path: "{{ apache_configuration_template_path }}/sites-available"
 apache_sites_enabled:
   - example1
 
