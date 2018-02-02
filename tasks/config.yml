@@ -31,7 +31,7 @@
   with_filetree:
     - "{{ apache_extra_conf_template_path }}/"
   when: item.state == 'file'
-  notify: Restart Apache
+  notify: Reload Apache
 
 - name: Apache_httpd | Ensure logs folder exists
   file:
@@ -61,7 +61,7 @@
     state: link
   with_items:
     - "{{ apache_sites_enabled }}"
-  notify: Restart Apache
+  notify: Reload Apache
 
 - name: Apache_httpd | Create virtualhost folders
   file:
@@ -82,7 +82,7 @@
     mode: 0755
   with_filetree: "{{ apache_virtualhosts_files_path }}/"
   when: item.state == 'file'
-  notify: Restart Apache
+  notify: Reload Apache
 
 - name: Apache_httpd | Template rewrites file (provided by playbooks)
   template:
@@ -91,7 +91,7 @@
     owner: "{{ apache_user }}"
     group: "{{ apache_group }}"
     mode: 0644
-  notify: Restart Apache
+  notify: Reload Apache
   with_fileglob: "{{ apache_rewrites_template_src_folder }}/*"
 
 - name: Apache_httpd | Template apache2.service
