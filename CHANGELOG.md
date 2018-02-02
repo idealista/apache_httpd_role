@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+### Added
+- *[#10](https://github.com/idealista/apache_httpd-role/issues/10) Reload service instead of restarting when necessary* @jnogol
+
 ## [1.5.1](https://github.com/idealista/apache_httpd-role/tree/1.5.1)
 ### Changed
 - *Use uvigo mirror for mod_jk instead of rediris* @jnogol
