@@ -3,19 +3,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+
+## [1.5.2](https://github.com/idealista/apache_httpd-role/tree/1.5.2)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.5.1...1.5.2)
 ### Added
 - *[#10](https://github.com/idealista/apache_httpd-role/issues/10) Reload service instead of restarting when necessary* @jnogol
 
 ## [1.5.1](https://github.com/idealista/apache_httpd-role/tree/1.5.1)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.5.0...1.5.1)
 ### Changed
 - *Use uvigo mirror for mod_jk instead of rediris* @jnogol
 
 ## [1.5.0](https://github.com/idealista/apache_httpd-role/tree/1.5.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.4.1...1.5.0)
 ### Added
 - *[#36](https://github.com/idealista/apache_httpd-role/issues/36) Add the ability to configure any file under /etc/apache/conf using provided files or templates* @dortegau
 
 ## [1.4.1](https://github.com/idealista/apache_httpd-role/tree/1.4.1)
-## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.3.0...1.4.1)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.4.0...1.4.1)
 ### Fixed
 - *[#32](https://github.com/idealista/apache_httpd-role/issues/32) Execute ldconfig to ensure Brotli libraries discovery* @jnogol
 
