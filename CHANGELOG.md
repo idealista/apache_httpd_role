@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+
+## [1.6.0](https://github.com/idealista/apache_httpd-role/tree/1.6.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.5.2...1.6.0)
 ### Added
 - *[#45](https://github.com/idealista/apache_httpd-role/issues/45) Follow Apache's Security Tips* @jnogol
 
