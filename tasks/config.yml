@@ -3,9 +3,9 @@
   file:
     path: "{{ apache_config_dir }}/{{ item.path }}"
     state: directory
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
-    mode: 0640
+    owner: root
+    group: root
+    mode: 0755
   with_filetree:
     - "{{ apache_extra_conf_template_path }}/"
     - "{{ apache_extra_conf_path }}/"
@@ -15,19 +15,21 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ apache_config_dir }}/{{ item.path }}"
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
-    mode: 0640
+    owner: root
+    group: root
+    mode: 0755
   with_filetree:
     - "{{ apache_extra_conf_path }}/"
   when: item.state == "file"
+  notify: Reload Apache
 
 - name: Apache_httpd | Copy extra apache config templates (provided by playbooks)
   template:
     src: "{{ item.src }}"
     dest: "{{ apache_config_dir }}/{{ item.path | splitext | first }}"
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
+    owner: root
+    group: root
+    mode: 0755
   with_filetree:
     - "{{ apache_extra_conf_template_path }}/"
   when: item.state == 'file'
@@ -37,17 +39,17 @@
   file:
     dest: "{{ apache_logs_dir }}"
     state: directory
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
+    owner: root
+    group: root
     mode: 0755
 
 - name: Apache_httpd | Ensure additional config paths exists
   file:
     path: "{{ apache_config_dir }}/{{ item }}"
     state: directory
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
-    mode: 0640
+    owner: root
+    group: root
+    mode: 0755
   with_items:
     - "{{ apache_additional_config_folders }}"
 
@@ -55,9 +57,9 @@
   file:
     src: "{{ apache_config_dir }}/sites-available/{{ item }}.conf"
     dest: "{{ apache_config_dir }}/sites-enabled/{{ item }}.conf"
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
-    mode: 0640
+    owner: root
+    group: root
+    mode: 0755
     state: link
   with_items:
     - "{{ apache_sites_enabled }}"
@@ -67,8 +69,8 @@
   file:
     dest: "{{ apache_document_root }}/{{ item }}"
     state: directory
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
+    owner: root
+    group: root
     mode: 0755
   with_items:
     - "{{ apache_sites_enabled }}"
@@ -77,8 +79,8 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ apache_document_root }}/{{ item.path }}"
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
+    owner: root
+    group: root
     mode: 0755
   with_filetree: "{{ apache_virtualhosts_files_path }}/"
   when: item.state == 'file'
@@ -88,9 +90,9 @@
   template:
     src: "{{ item }}"
     dest: "{{ apache_rewrites_template_dest_folder }}/{{ item | basename | splitext | first }}"
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
-    mode: 0644
+    owner: root
+    group: root
+    mode: 0755
   notify: Reload Apache
   with_fileglob: "{{ apache_rewrites_template_src_folder }}/*"
 
@@ -98,8 +100,6 @@
   template:
     src: apache/service/apache2.service.j2
     dest: /lib/systemd/system/apache2.service
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
   notify: Restart Apache
 
 - name: Apache_httpd | Template logrotate

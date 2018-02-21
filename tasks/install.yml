@@ -24,6 +24,8 @@
   user:
     name: "{{ apache_user }}"
     group: "{{ apache_group }}"
+    home: /var/www
+    shell: /sbin/nologin
 
 - name: Apache_httpd | Ensure Apache build directory
   file:
@@ -36,8 +38,9 @@
     dest: "{{ apache_build_dir }}"
     remote_src: yes
     extra_opts: --strip-components=1
-    owner: "{{ apache_user }}"
-    group: "{{ apache_group }}"
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Apache_httpd | Define compile-time options
   set_fact:
@@ -64,6 +67,13 @@
   make:
     chdir: "{{ apache_build_dir }}"
     target: install
+
+- name: Apache_httpd | Set permissions for apachectl binary
+  file:
+    path: "{{ apache_install_dir }}/bin/apachectl"
+    mode: 0511
+  tags:
+    - skip_ansible_lint
 
 - name: Apache_httpd | Make apachectl command available
   file:
