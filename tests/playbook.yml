@@ -1,11 +1,9 @@
 ---
 - hosts: apache
-  tasks:
+  roles:
+    - apache_httpd-role
+  post_tasks:
     - name: Install netstat (required for tests)
       apt:
         package: net-tools
         update_cache: true
-
-- hosts: apache
-  roles:
-    - apache_httpd-role
