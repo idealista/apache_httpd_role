@@ -57,7 +57,7 @@ Use in a playbook:
 
 Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
 
-Bear in mind that the role deploys the default Apache httdp config file. If you want to use yours (something that we strongly recommend), place it under the directory referred by the variable apache_extra_conf_template_path. If you need any inspiration, a good template to start with could be the one in `tests/templates/apache/conf/httpd.conf.j2`.
+Bear in mind that the role deploys the default Apache httdp config file. If you want to use yours (something that we strongly recommend), place it under the directory referred by the variable `apache_extra_conf_template_path`. If you need any inspiration, a good template to start with could be the one in `tests/templates/apache/conf/httpd.conf.j2`.
 
 ## Testing
 
