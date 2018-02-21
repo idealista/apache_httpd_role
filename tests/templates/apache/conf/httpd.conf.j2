@@ -77,8 +77,8 @@ LoadModule {{ default_module }}_module modules/mod_{{ default_module }}.so
 # It is usually good practice to create a dedicated user and group for
 # running httpd, as with most system services.
 #
-User daemon
-Group daemon
+User {{ apache_user }}
+Group {{ apache_group }}
 
 </IfModule>
 
@@ -146,7 +146,7 @@ DocumentRoot "{{ apache_document_root }}"
     # http://httpd.apache.org/docs/2.4/mod/core.html#options
     # for more information.
     #
-    Options Indexes FollowSymLinks
+    Options FollowSymLinks
 
     #
     # AllowOverride controls what directives may be placed in .htaccess files.

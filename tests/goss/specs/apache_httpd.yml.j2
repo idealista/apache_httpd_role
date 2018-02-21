@@ -12,10 +12,16 @@ service:
     running: true
 
 file:
-  /lib/systemd/system/apache2.service:
-    owner: {{ apache_user }}
-    group: {{ apache_group }}
+  {{ apache_install_dir }}:
     exists: true
+    filetype: directory
+    mode: "0755"
+    owner: root
+    group: root
+  /usr/bin/apachectl:
+    exists: true
+    filetype: symlink
+    linked-to: {{ apache_install_dir }}/bin/apachectl
 
 user:
   {{ apache_user }}:

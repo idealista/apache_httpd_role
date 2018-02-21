@@ -1,8 +1,8 @@
 ---
 apache_reinstall: false
 
-apache_user: www-data
-apache_group: www-data
+apache_user: apache
+apache_group: apache
 
 apache_version: 2.4.29
 
