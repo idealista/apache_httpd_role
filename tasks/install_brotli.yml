@@ -27,7 +27,6 @@
 - name: Apache_httpd | Make brotli
   make:
     chdir: "{{ apache_brotli_build_path }}/out"
-  changed_when: false
 
 - name: Apache_httpd | Make test and install
   make:
@@ -36,7 +35,6 @@
   with_items:
     - test
     - install
-  changed_when: false
 
 - name: Apache_httpd | Ldconfig
   command: ldconfig
