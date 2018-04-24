@@ -4,7 +4,7 @@ apache_reinstall: false
 apache_user: apache
 apache_group: apache
 
-apache_version: 2.4.29
+apache_version: 2.4.33
 
 apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
@@ -42,30 +42,30 @@ apache_sites_enabled:
 ### The list of default modules can be found on:
 ### http://httpd.apache.org/docs/2.4/en/mod/#A
 apache_default_modules_enabled:
-  - authn_file
-  - authn_core
-  - authz_host
-  - authz_groupfile
-  - authz_user
-  - authz_core
   - access_compat
+  - alias
   - auth_basic
-  - reqtimeout
-  - filter
-  - mime
-  - log_config
-  - env
-  - headers
-  - setenvif
-  - version
-  - unixd
-  - status
+  - authn_core
+  - authn_file
+  - authz_core
+  - authz_groupfile
+  - authz_host
+  - authz_user
   - autoindex
   - dir
-  - alias
+  - env
+  - filter
+  - headers
+  - log_config
+  - mime
   - proxy
   - proxy_connect
   - proxy_http
+  - reqtimeout
+  - setenvif
+  - status
+  - unixd
+  - version
 
 ## mod_jk variables
 apache_modjk_install: false # Set to true to install mod_jk
@@ -81,7 +81,7 @@ apache_modjk_workers_properties: false # Set true to copy a mod_jk workers prope
 apache_modjk_workers_properties_file: # Name and extension of this file
 
 ## logrotate variables
-apache_logrotate_enabled: true
+apache_logrotate_enabled: false
 apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}
 
 ## brotli variables
