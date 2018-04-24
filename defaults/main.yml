@@ -11,6 +11,9 @@ apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 apache_config_dir: "{{ apache_install_dir }}/conf"
 
+apache_service_state: started
+apache_service_enabled: yes
+
 apache_rewrites_template_src_folder: "{{ playbook_dir }}/templates/apache/rewrites"
 apache_rewrites_template_dest_folder: "{{ apache_install_dir }}/conf"
 
