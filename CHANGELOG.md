@@ -3,9 +3,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+### Added
+- *Add brotli and mod_jk installation checks* @jnogol
+
 ### Changed
 - *Update Brotli, mod_jk and Apache version* @jnogol
 - *Use import_tasks instead of include and therefore, Ansible minimum version = 2.4.0.0* @jnogol
+- *Update default Apache version to 2.4.33* @jnogol
+- *Disabled logrotate by default* @jnogol
+- *[#49](https://github.com/idealista/apache_httpd-role/issues/49) Extract service state and enabled option to variables* @jnogol
 
 ## [1.6.0](https://github.com/idealista/apache_httpd-role/tree/1.6.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.5.2...1.6.0)

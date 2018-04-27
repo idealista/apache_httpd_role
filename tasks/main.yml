@@ -28,7 +28,11 @@
   tags:
     - install
     - mod_jk
-  when: apache_modjk_install
+  when: >
+    apache_modjk_install and
+    ( apache_modjk_installed_version.rc != 0 or
+    apache_modjk_version not in apache_modjk_installed_version.stdout or
+    apache_modjk_reinstall )
 
 - name: Apache_httpd | Config
   import_tasks: config.yml
