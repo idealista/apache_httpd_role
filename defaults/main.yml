@@ -4,12 +4,15 @@ apache_reinstall: false
 apache_user: apache
 apache_group: apache
 
-apache_version: 2.4.29
+apache_version: 2.4.33
 
 apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
 apache_logs_dir: /var/log/apache2
 apache_config_dir: "{{ apache_install_dir }}/conf"
+
+apache_service_state: started
+apache_service_enabled: yes
 
 apache_rewrites_template_src_folder: "{{ playbook_dir }}/templates/apache/rewrites"
 apache_rewrites_template_dest_folder: "{{ apache_install_dir }}/conf"
@@ -39,34 +42,35 @@ apache_sites_enabled:
 ### The list of default modules can be found on:
 ### http://httpd.apache.org/docs/2.4/en/mod/#A
 apache_default_modules_enabled:
-  - authn_file
-  - authn_core
-  - authz_host
-  - authz_groupfile
-  - authz_user
-  - authz_core
   - access_compat
+  - alias
   - auth_basic
-  - reqtimeout
-  - filter
-  - mime
-  - log_config
-  - env
-  - headers
-  - setenvif
-  - version
-  - unixd
-  - status
+  - authn_core
+  - authn_file
+  - authz_core
+  - authz_groupfile
+  - authz_host
+  - authz_user
   - autoindex
   - dir
-  - alias
+  - env
+  - filter
+  - headers
+  - log_config
+  - mime
   - proxy
   - proxy_connect
   - proxy_http
+  - reqtimeout
+  - setenvif
+  - status
+  - unixd
+  - version
 
 ## mod_jk variables
 apache_modjk_install: false # Set to true to install mod_jk
-apache_modjk_version: 1.2.42
+apache_modjk_reinstall: false
+apache_modjk_version: 1.2.43
 apache_modjk_download_dir: /tmp/build_modjk
 apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
 ### If configuration for mod_jk is provided, this needs to be done in a file under {{ apache_modjk_playbook_files_dir }} folder in our playbook directory
@@ -78,11 +82,12 @@ apache_modjk_workers_properties: false # Set true to copy a mod_jk workers prope
 apache_modjk_workers_properties_file: # Name and extension of this file
 
 ## logrotate variables
-apache_logrotate_enabled: true
+apache_logrotate_enabled: false
 apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}
 
 ## brotli variables
 apache_brotli_install: false
+apache_brotli_reinstall: false
 apache_brotli_lib_path: /usr/lib/brotli
 apache_brotli_build_path: /tmp/brotli
-apache_brotli_version: v1.0.2
+apache_brotli_version: v1.0.3

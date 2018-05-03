@@ -3,6 +3,6 @@
 - name: Apache_httpd | Configure httpd service
   systemd:
     name: apache2
-    state: started
-    enabled: yes
+    state: "{{ apache_service_state }}"
+    enabled: "{{ apache_service_enabled }}"
     daemon_reload: yes
