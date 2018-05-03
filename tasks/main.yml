@@ -1,34 +1,45 @@
 ---
-- name: Apache_httpd | Check Apache version
-  command: apachectl -v
-  register: apache_installed_version
-  changed_when: false
-  failed_when: false
-
-- name: Apache_httpd | Install brotli
-  include: install_brotli.yml
+- name: Apache_httpd | Previous checks
+  import_tasks: previous_checks.yml
   tags:
     - install
-  when: apache_brotli_install
+    - brotli
+    - mod_jk
+
+- name: Apache_httpd | Install brotli
+  import_tasks: install_brotli.yml
+  tags:
+    - install
+    - brotli
+  when: >
+    apache_brotli_install and
+    ( apache_brotli_installed_version.rc != 0 or
+    apache_brotli_version | regex_replace('^v','') not in apache_brotli_installed_version.stdout or
+    apache_brotli_reinstall )
 
 - name: Apache_httpd | Install
-  include: install.yml
+  import_tasks: install.yml
   tags:
     - install
   when: apache_installed_version.rc != 0 or apache_version not in apache_installed_version.stdout or apache_reinstall
 
 - name: Apache_httpd | Install mod_jk
-  include: install_modjk.yml
+  import_tasks: install_modjk.yml
   tags:
     - install
-  when: apache_modjk_install
+    - mod_jk
+  when: >
+    apache_modjk_install and
+    ( apache_modjk_installed_version.rc != 0 or
+    apache_modjk_version not in apache_modjk_installed_version.stdout or
+    apache_modjk_reinstall )
 
 - name: Apache_httpd | Config
-  include: config.yml
+  import_tasks: config.yml
   tags:
     - config
 
 - name: Apache_httpd | Service
-  include: service.yml
+  import_tasks: service.yml
   tags:
     - service
