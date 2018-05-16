@@ -95,6 +95,8 @@
     mode: 0755
   notify: Reload Apache
   with_fileglob: "{{ apache_rewrites_template_src_folder }}/*"
+  tags:
+    - apache_rewrites
 
 - name: Apache_httpd | Template apache2.service
   template:
