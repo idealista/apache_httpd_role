@@ -4,9 +4,9 @@
         rotate 8
         compress
         notifempty
-        create 640 root core
+        create 640 root root
         sharedscripts
         postrotate
-                /etc/init.d/apache2 graceful > /dev/null
+                {{ apache_install_dir }}/bin graceful > /dev/null
         endscript
 }
