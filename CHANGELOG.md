@@ -8,7 +8,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.7.0...1.8.0)
 ### Added
 - *[#53](https://github.com/idealista/apache_httpd-role/pull/53) Add specific tag for rewrites* @jnogol
-- *Add more specific tags in main.yml* @jnogol
 
 ## [1.7.0](https://github.com/idealista/apache_httpd-role/tree/1.7.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.6.0...1.7.0)
