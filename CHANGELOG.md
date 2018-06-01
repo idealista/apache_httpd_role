@@ -3,8 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
-### Added
-- *Add apache_ tags in main.yml* @jnogol
+### Changed
+- *Add apache_ prefix to install, config and service tags in main.yml* @jnogol
 
 ## [1.8.0](https://github.com/idealista/apache_httpd-role/tree/1.8.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.7.0...1.8.0)
