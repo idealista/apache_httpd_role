@@ -2,15 +2,15 @@
 - name: Apache_httpd | Previous checks
   import_tasks: previous_checks.yml
   tags:
-    - install
-    - brotli
-    - mod_jk
+    - apache_install
+    - apache_brotli
+    - apache_mod_jk
 
 - name: Apache_httpd | Install brotli
   import_tasks: install_brotli.yml
   tags:
-    - install
-    - brotli
+    - apache_install
+    - apache_brotli
   when: >
     apache_brotli_install and
     ( apache_brotli_installed_version.rc != 0 or
@@ -20,14 +20,14 @@
 - name: Apache_httpd | Install
   import_tasks: install.yml
   tags:
-    - install
+    - apache_install
   when: apache_installed_version.rc != 0 or apache_version not in apache_installed_version.stdout or apache_reinstall
 
 - name: Apache_httpd | Install mod_jk
   import_tasks: install_modjk.yml
   tags:
-    - install
-    - mod_jk
+    - apache_install
+    - apache_mod_jk
   when: >
     apache_modjk_install and
     ( apache_modjk_installed_version.rc != 0 or
@@ -37,9 +37,9 @@
 - name: Apache_httpd | Config
   import_tasks: config.yml
   tags:
-    - config
+    - apache_config
 
 - name: Apache_httpd | Service
   import_tasks: service.yml
   tags:
-    - service
+    - apache_service
