@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
 
+## [2.0.1](https://github.com/idealista/apache_httpd-role/tree/2.0.1)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/2.0.0...2.0.1)
+### Changed
+- *Update default Apache version to 2.4.34* @jnogol
+
 ## [2.0.0](https://github.com/idealista/apache_httpd-role/tree/2.0.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/1.8.0...2.0.0)
 ### Changed
