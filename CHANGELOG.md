@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
+
+## [2.0.1](https://github.com/idealista/apache_httpd-role/tree/2.0.1)
+## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/2.0.0...2.0.1)
 ### Changed
 - *Update default Apache version to 2.4.34* @jnogol
 
