@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/apache_httpd-role/tree/develop)
 ### Fixed
-- *[#60](https://github.com/idealista/apache_httpd-role/issues/60) Update `mod_jk` download URL and move download URLs to `defaults/main.yml`s* @jnogol
+- *[#60](https://github.com/idealista/apache_httpd-role/issues/60) Update `mod_jk` download URL and move download URLs to `defaults/main.yml`* @jnogol
 
 ## [2.0.1](https://github.com/idealista/apache_httpd-role/tree/2.0.1)
 ## [Full Changelog](https://github.com/idealista/apache_httpd-role/compare/2.0.0...2.0.1)
