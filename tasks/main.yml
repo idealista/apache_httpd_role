@@ -34,6 +34,19 @@
     apache_modjk_version not in apache_modjk_installed_version.stdout or
     apache_modjk_reinstall )
 
+- name: Apache_httpd | Install mod_pagespeed
+  import_tasks: install_modpagespeed.yml
+  tags:
+    - apache_install
+    - apache_mod_pagespeed
+  when: >
+    apache_modpagespeed_install
+  # TODO Checks not yet implemented
+  #  and
+  #  ( apache_modpagespeed_installed_version.rc != 0 or
+  #  apache_modpagespeed_version not in apache_modpagespeed_installed_version.stdout or
+  #  apache_modpagespeed_reinstall )
+
 - name: Apache_httpd | Config
   import_tasks: config.yml
   tags:

@@ -82,6 +82,14 @@ apache_modjk_conf_file:  # Name and extension of this file
 apache_modjk_workers_properties: false  # Set true to copy a mod_jk workers properties file
 apache_modjk_workers_properties_file:  # Name and extension of this file
 
+# mod_pagespeed variables
+apache_modpagespeed_install: false  # Set to true to install mod_pagespeed
+apache_modpagespeed_reinstall: false
+apache_modpagespeed_version: 1.14.36.1
+apache_modpagespeed_download_dir: /usr/src
+apache_modpagespeed_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_package }}"
+apache_modpagespeed_extract_dir: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_release_name }}"
+
 ## logrotate variables
 apache_logrotate_enabled: false
 apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}

@@ -1,0 +1,71 @@
+---
+#- name: Apache_httpd | Install mod_pagespeed prerequisites
+#  apt:
+#    package: "{{ apache_modpagespeed_prerrequisites }}"
+#    update_cache: yes
+#    cache_valid_time: 86400
+
+- name: Apache_httpd | Ensure mod_pagespeed build directory
+  file:
+    path: "{{ apache_modpagespeed_extract_dir }}"
+    state: directory
+
+- name: Apache_httpd | Download mod_pagespeed
+  get_url:
+    url: "{{ apache_modpagespeed_url }}"
+    dest: "{{ apache_modpagespeed_download_dir }}"
+    remote_src: yes
+  changed_when: false
+
+- name: Apache_httpd | Extract mod_pagespeed
+  unarchive:
+    src: "{{ apache_modpagespeed_package_path }}"
+    dest: "{{ apache_modpagespeed_extract_dir }}"
+    remote_src: yes
+  changed_when: false
+
+###
+
+- name: Apache_httpd | Create configure script
+  command: ./buildconf.sh
+  args:
+    chdir: "{{ apache_modpagespeed_build_dir }}"
+  changed_when: false
+
+- name: Apache_httpd | Configure mod_pagespeed
+  command: ./configure -with-apxs={{ apache_install_dir }}/bin/apxs
+  args:
+    chdir: "{{ apache_modpagespeed_build_dir }}"
+  changed_when: false
+
+- name: Apache_httpd | Make mod_pagespeed
+  make:
+    chdir: "{{ apache_modpagespeed_build_dir }}"
+  changed_when: false
+
+- name: Apache_httpd | Copy mod_pagespeed to Apache modules folder
+  copy:
+    src: "{{ apache_modpagespeed_build_dir }}/apache-2.0/mod_pagespeed.so"
+    dest: "{{ apache_install_dir }}/modules/mod_pagespeed.so"
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: true
+
+- name: Apache_httpd | Copy mod_pagespeed configuration file
+  template:
+    src: "{{ apache_modpagespeed_playbook_files_dir }}/{{ apache_modpagespeed_conf_file }}"
+    dest: "{{ apache_install_dir }}/conf/extra/{{ apache_modpagespeed_conf_file }}"
+    owner: root
+    group: root
+    mode: 0755
+  when: apache_modpagespeed_conf
+
+- name: Apache_httpd | Copy mod_pagespeed workers properties file
+  template:
+    src: "{{ apache_modpagespeed_playbook_files_dir }}/{{ apache_modpagespeed_workers_properties_file }}"
+    dest: "{{ apache_install_dir }}/conf/extra/{{ apache_modpagespeed_workers_properties_file }}"
+    owner: root
+    group: root
+    mode: 0755
+  when: apache_modpagespeed_workers_properties
