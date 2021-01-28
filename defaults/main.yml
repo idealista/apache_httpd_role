@@ -69,18 +69,18 @@ apache_default_modules_enabled:
   - version
 
 ## mod_jk variables
-apache_modjk_install: false # Set to true to install mod_jk
+apache_modjk_install: false  # Set to true to install mod_jk
 apache_modjk_reinstall: false
-apache_modjk_version: 1.2.43
+apache_modjk_version: 1.2.48
 apache_modjk_download_dir: /tmp/build_modjk
 apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
 ### If configuration for mod_jk is provided, this needs to be done in a file under {{ apache_modjk_playbook_files_dir }} folder in our playbook directory
 ### and these variables have to be set to true and to the name of such configuration file
 apache_modjk_playbook_files_dir: "{{ playbook_dir }}/templates/apache/mod_jk"
-apache_modjk_conf: false # Set true to copy a mod_jk config file
-apache_modjk_conf_file: # Name and extension of this file
-apache_modjk_workers_properties: false # Set true to copy a mod_jk workers properties file
-apache_modjk_workers_properties_file: # Name and extension of this file
+apache_modjk_conf: false  # Set true to copy a mod_jk config file
+apache_modjk_conf_file:  # Name and extension of this file
+apache_modjk_workers_properties: false  # Set true to copy a mod_jk workers properties file
+apache_modjk_workers_properties_file:  # Name and extension of this file
 
 ## logrotate variables
 apache_logrotate_enabled: false
@@ -91,4 +91,4 @@ apache_brotli_install: false
 apache_brotli_reinstall: false
 apache_brotli_lib_path: /usr/lib/brotli
 apache_brotli_build_path: /tmp/brotli
-apache_brotli_version: v1.0.3
+apache_brotli_version: v1.0.9

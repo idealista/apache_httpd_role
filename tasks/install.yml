@@ -1,15 +1,13 @@
 ---
 - name: Apache_httpd | Installing prerequisites
   apt:
-    package: "{{ item }}"
+    package: "{{ apache_required_libs }}"
     update_cache: yes
     cache_valid_time: 86400
-  with_items: "{{ apache_required_libs }}"
 
 - name: Apache_httpd | Installing extra libs (if needed)
   apt:
-    package: "{{ item }}"
-  with_items: "{{ apache_extra_libs }}"
+    package: "{{ apache_extra_libs }}"
 
 - name: Apache_httpd | Install logrotate (if needed)
   apt:
