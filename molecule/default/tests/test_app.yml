@@ -1,50 +1,4 @@
 ---
-## TODO: Remember to adapt goss tests to your convenience
-
-#service:
-#  apache_httpd:
-#    enabled: true
-#    running: true
-#
-#process:
-#  apachectl:
-#    running: true
-#
-#user:
-#  exampleuser:
-#      exists: true
-#      groups:
-#        - examplegroup
-#      shell: /usr/sbin/nologin
-#group:
-#  examplegroup:
-#    exists: true
-#
-#file:
-#  /opt/apache_httpd:
-#    
-#    owner: exampleuser
-#    group: examplegroup
-#    
-#    exists: true
-#    filetype: directory
-#  /opt/apache_httpd/bin:
-#    
-#    owner: exampleuser
-#    group: examplegroup
-#    
-#    exists: true
-#    filetype: directory
-
-## Check if ports are really exposed
-# port:
-# # Check port at IPv6
-# # https://github.com/aelsabbahy/goss/issues/177
-#   tcp6:<port>:
-#     listening: true
-#     ip:
-#     - '::'
-
 
 http:
   http://localhost:{{ apache_port }}:
@@ -53,12 +7,10 @@ http:
     status: 200
     body:
       - "idealista is awesome"
-
 service:
   apache2:
     enabled: true
     running: true
-
 file:
   {{ apache_install_dir }}:
     exists: true
@@ -70,17 +22,14 @@ file:
     exists: true
     filetype: symlink
     linked-to: {{ apache_install_dir }}/bin/apachectl
-
 user:
   {{ apache_user }}:
     exists: true
     groups:
       - {{ apache_group }}
-
 group:
   {{ apache_group }}:
     exists: true
-
 port:
   tcp:80:
     listening: true
