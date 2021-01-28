@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/idealista/apache_httpd-role/master/logo.gif)
 
-[![Build Status](https://travis-ci.org/idealista/apache_httpd-role.png)](https://travis-ci.org/idealista/apache_httpd-role)
+[![Build Status](https://travis-ci.org/idealista/apache_httpd-role.png)](https://travis-ci.com/idealista/apache_httpd-role)
 
 # Apache HTTP Server Ansible role
 
@@ -23,10 +23,8 @@ These instructions will get you a copy of the role for your Ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.4.0.0 version installed.
-Inventory destination should be a Debian environment.
-
-For testing purposes, [Molecule](https://molecule.readthedocs.io/) (version 1.25) with [Vagrant](https://www.vagrantup.com/) as driver (with [landrush](https://github.com/vagrant-landrush/landrush) plugin) and [VirtualBox](https://www.virtualbox.org/) or [Docker](https://www.docker.com/) as provider.
+Ansible 2.8.0.0 version installed.
+Inventory destination should be a Debian environment, Stretch and Buster are supported.
 
 ### Installing
 
@@ -34,7 +32,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
 - src: idealista.apache_httpd-role
-  version: 1.0.0
+  version: 2.0.2
   name: apache_httpd
 ```
 
@@ -61,21 +59,22 @@ Bear in mind that the role deploys the default Apache httdp config file. If you 
 
 ## Testing
 
-### Using Vagrant as provider
-```
-molecule test
+### Install dependencies
+
+```sh
+$ pipenv sync
 ```
 
-### Using Docker as provider
-```
-molecule test --driver docker
-```
+For more information read the [pipenv docs](pipenv-fork.readthedocs.io/en/latest/).
 
-See molecule.yml to check possible testing platforms. As a reminder, our tests are just compatible with Molecule 1.x
+### Testing
+
+```sh
+$ pipenv run molecule test 
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.4.0.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.8.0.0-green.svg)
 
 ## Versioning
 

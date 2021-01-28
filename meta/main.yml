@@ -1,10 +1,17 @@
 ---
+
 galaxy_info:
+  author: idealista
   company: Idealista S.A.U.
   description: Apache HTTP Server role
-  min_ansible_version: 2.4.0.0
+  min_ansible_version: 2.8.0
   license: Apache 2.0
+  galaxy-tags:
+    - server
+    - apache
+    - httpd
   platforms:
     - name: Debian
       versions:
         - stretch
+        - buster
