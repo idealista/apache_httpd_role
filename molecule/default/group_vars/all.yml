@@ -1,4 +1,6 @@
 ---
+
+apache_private_tmp: false
 apache_build_dir: /build_apache
 
 apache_modjk_install: true

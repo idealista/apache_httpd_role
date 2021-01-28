@@ -4,7 +4,7 @@ apache_reinstall: false
 apache_user: apache
 apache_group: apache
 
-apache_version: 2.4.34
+apache_version: 2.4.46
 
 apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
@@ -13,6 +13,7 @@ apache_config_dir: "{{ apache_install_dir }}/conf"
 
 apache_service_state: started
 apache_service_enabled: yes
+apache_private_tmp: true
 
 apache_rewrites_template_src_folder: "{{ playbook_dir }}/templates/apache/rewrites"
 apache_rewrites_template_dest_folder: "{{ apache_install_dir }}/conf"
