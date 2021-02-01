@@ -87,8 +87,12 @@ apache_modpagespeed_install: false  # Set to true to install mod_pagespeed
 apache_modpagespeed_reinstall: false
 apache_modpagespeed_version: 1.14.36.1
 apache_modpagespeed_download_dir: /usr/src
-apache_modpagespeed_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_package }}"
-apache_modpagespeed_extract_dir: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_release_name }}"
+apache_modpagespeed_sources_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_package }}"
+apache_modpagespeed_sources_extract_dir: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_release_name }}"
+apache_modpagespeed_deb_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_deb_package }}"
+apache_modpagespeed_playbook_templates_dir: "{{ playbook_dir }}/templates/apache/mod_pagespeed"
+apache_modpagespeed_conf_file: mod-pagespeed.conf
+apache_modpagespeed_conf: false
 
 ## logrotate variables
 apache_logrotate_enabled: false
