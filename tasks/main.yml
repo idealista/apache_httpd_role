@@ -5,6 +5,7 @@
     - apache_install
     - apache_brotli
     - apache_mod_jk
+    - apache_mod_pagespeed
 
 - name: Apache_httpd | Install brotli
   import_tasks: install_brotli.yml

@@ -28,22 +28,10 @@
   changed_when: false
   register: modpagespeed_sofiles
 
-- name: Apache_httpd | Copy mod_pagespeed to Apache modules folder
-  copy:
-    src: "{{ item }}"
-    dest: "{{ apache_install_dir }}/modules/"
-    owner: root
-    group: root
-    mode: 0755
-    remote_src: true
-  with_items:
-    - "{{ modpagespeed_sofiles.stdout_lines[1:] | replace(' ', '') }}"
+- name: Apache_httpd | Set apache_modpagespeed_so_files fact
+  set_fact:
+    apache_modpagespeed_so_files: "{{ modpagespeed_sofiles.stdout_lines[1:] | replace(' ', '') }}"
 
-- name: Apache_httpd | Copy mod_pagespeed configuration file
-  template:
-    src: "{{ apache_modpagespeed_playbook_templates_dir }}/{{ apache_modpagespeed_conf_file }}"
-    dest: "{{ apache_install_dir }}/conf/extra/{{ apache_modpagespeed_conf_file }}"
-    owner: root
-    group: root
-    mode: 0755
-  when: apache_modpagespeed_conf
+- name: Apache_httpd | Set apache_modules_so_files fact
+  set_fact:
+    apache_modules_so_files: "{{ apache_modules_so_files + apache_modpagespeed_so_files if apache_modules_so_files is defined else apache_modjk_pagespeed_files }}"

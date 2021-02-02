@@ -38,6 +38,6 @@ command:
     exit-status: 0
     exec: "{{ apache_install_dir }}/bin/httpd -M"
     stdout:
-    - brotli_module
-    - jk_module
-    - pagespeed_module
+      - brotli_module
+      - jk_module
+      - pagespeed_module

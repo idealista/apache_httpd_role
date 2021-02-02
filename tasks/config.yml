@@ -1,4 +1,16 @@
 ---
+
+- name: Apache_httpd | Copy modules to Apache modules folder
+  copy:
+    src: "{{ item }}"
+    dest: "{{ apache_install_dir }}/modules/"
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: true
+  loop: "{{ apache_modules_so_files }}"
+  when: apache_modules_so_files is defined
+
 - name: Apache_httpd | Ensure extra config file and template paths exists
   file:
     path: "{{ apache_config_dir }}/{{ item.path }}"
