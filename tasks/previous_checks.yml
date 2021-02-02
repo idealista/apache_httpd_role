@@ -28,3 +28,13 @@
 - name: Apache_httpd | Set apache_modjk_installed_version fact
   set_fact:
     apache_modjk_installed_version: "{{ apache_modjk_installed_version }}"
+
+- name: Apache_httpd | Check mod_pagespeed version
+  command: strings {{ apache_install_dir }}/modules/mod_pagespeed.so
+  register: apache_modpagespeed_installed_version
+  changed_when: false
+  failed_when: false
+
+- name: Apache_httpd | Set apache_modpagespeed_installed_version fact
+  set_fact:
+    apache_modpagespeed_installed_version: "{{ apache_modpagespeed_installed_version }}"
