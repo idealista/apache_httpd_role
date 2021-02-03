@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/idealista/apache_httpd_role/master/logo.gif)
 
-[![Build Status](https://travis-ci.org/idealista/apache_httpd_role.png)](https://travis-ci.org/idealista/apache_httpd_role)
+[![Build Status](https://travis-ci.com/idealista/apache_httpd_role.png)](https://travis-ci.com/idealista/apache_httpd_role)
 
 # Apache HTTP Server Ansible role
 
