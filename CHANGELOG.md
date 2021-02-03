@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/apache_httpd_role/tree/develop)
 ### Changed
 - *[#48](https://github.com/idealista/apache_httpd_role/issues/48) Upgrade `httpd`, `molecule`, `goss`, `mod_jk` and `brotli`, add requirements and update travis* @caldito
+- *[#65](https://github.com/idealista/apache_httpd_role/issues/65) ModPageSpeed installation, change role name and unify some modules installation steps* @caldito
 
 ## [2.0.2](https://github.com/idealista/apache_httpd_role/tree/2.0.2)
 ## [Full Changelog](https://github.com/idealista/apache_httpd_role/compare/2.0.1...2.0.2)
