@@ -1,6 +1,6 @@
-![Logo](https://raw.githubusercontent.com/idealista/apache_httpd-role/master/logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/apache_httpd_role/master/logo.gif)
 
-[![Build Status](https://travis-ci.org/idealista/apache_httpd-role.png)](https://travis-ci.com/idealista/apache_httpd-role)
+[![Build Status](https://travis-ci.org/idealista/apache_httpd_role.png)](https://travis-ci.com/idealista/apache_httpd_role)
 
 # Apache HTTP Server Ansible role
 
@@ -31,8 +31,8 @@ Inventory destination should be a Debian environment, Stretch and Buster are sup
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
-- src: idealista.apache_httpd-role
-  version: 2.0.2
+- src: idealista.apache_httpd_role
+  version: 3.0.0
   name: apache_httpd
 ```
 
@@ -78,7 +78,7 @@ $ pipenv run molecule test
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista/apache_httpd-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/apache_httpd_role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
@@ -86,7 +86,7 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 * **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/apache_httpd-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/apache_httpd_role/contributors) who participated in this project.
 
 ## License
 
