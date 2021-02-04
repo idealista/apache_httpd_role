@@ -6,6 +6,9 @@ apache_build_dir: /build_apache
 apache_modjk_install: true
 apache_modjk_download_dir: /build_modjk
 
+apache_modpagespeed_install: true
+apache_modpagespeed_conf_file: mod-pagespeed.conf
+
 apache_extra_libs:
   - zlib1g-dev
 

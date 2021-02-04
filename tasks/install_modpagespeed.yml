@@ -1,0 +1,37 @@
+---
+
+- name: Apache_httpd | Ensure mod_pagespeed directories
+  file:
+    path: "{{ apache_modpagespeed_sources_extract_dir }}"
+    state: directory
+
+- name: Apache_httpd | Download mod_pagespeed sources
+  get_url:
+    url: "{{ apache_modpagespeed_sources_url }}"
+    dest: "{{ apache_modpagespeed_download_dir }}"
+    remote_src: yes
+
+- name: Apache_httpd | Extract mod_pagespeed sources
+  unarchive:
+    src: "{{ apache_modpagespeed_sources_package_path }}"
+    dest: "{{ apache_modpagespeed_download_dir }}"
+    remote_src: yes
+
+- name: Apache_httpd | Download mod_pagespeed deb package
+  get_url:
+    url: "{{ apache_modpagespeed_deb_url }}"
+    dest: "{{ apache_modpagespeed_download_dir }}"
+    remote_src: yes
+
+- name: Apache_httpd | Extract so from deb
+  command: "{{ apache_modpagespeed_sources_extract_dir }}/extract_so_from_deb.sh {{ apache_modpagespeed_deb_package_path }}"
+  changed_when: false
+  register: modpagespeed_sofiles
+
+- name: Apache_httpd | Set apache_modpagespeed_so_files fact
+  set_fact:
+    apache_modpagespeed_so_files: "{{ modpagespeed_sofiles.stdout_lines[1:] | replace(' ', '') }}"
+
+- name: Apache_httpd | Set apache_modules_so_files fact
+  set_fact:
+    apache_modules_so_files: "{{ apache_modules_so_files + apache_modpagespeed_so_files if apache_modules_so_files is defined else apache_modjk_pagespeed_files }}"

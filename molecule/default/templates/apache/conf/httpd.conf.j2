@@ -422,8 +422,12 @@ SSLRandomSeed connect builtin
 {% if apache_modjk_install %}
 LoadModule jk_module modules/mod_jk.so
 {% endif %}
-{% if apache_modjk_conf %}
-Include conf/extra/{{ apache_modjk_conf_file }}
+
+
+{% if apache_modpagespeed_install %}
+LoadModule pagespeed_module modules/mod_pagespeed_ap24.so
+LoadModule access_compat_module modules/mod_access_compat.so
+Include conf/extra/{{ apache_modpagespeed_conf_file }}
 {% endif %}
 
 # Include generic snippets of statements

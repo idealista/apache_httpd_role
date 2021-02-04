@@ -2,4 +2,4 @@
 - name: Converge
   hosts: apache_group
   roles:
-    - role: apache_httpd-role
+    - role: apache_httpd_role

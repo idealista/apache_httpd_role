@@ -74,13 +74,15 @@ apache_modjk_reinstall: false
 apache_modjk_version: 1.2.48
 apache_modjk_download_dir: /tmp/build_modjk
 apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
-### If configuration for mod_jk is provided, this needs to be done in a file under {{ apache_modjk_playbook_files_dir }} folder in our playbook directory
-### and these variables have to be set to true and to the name of such configuration file
-apache_modjk_playbook_files_dir: "{{ playbook_dir }}/templates/apache/mod_jk"
-apache_modjk_conf: false  # Set true to copy a mod_jk config file
-apache_modjk_conf_file:  # Name and extension of this file
-apache_modjk_workers_properties: false  # Set true to copy a mod_jk workers properties file
-apache_modjk_workers_properties_file:  # Name and extension of this file
+
+# mod_pagespeed variables
+apache_modpagespeed_install: false  # Set to true to install mod_pagespeed
+apache_modpagespeed_reinstall: false
+apache_modpagespeed_version: 1.14.36.1
+apache_modpagespeed_download_dir: /usr/src
+apache_modpagespeed_sources_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_package }}"
+apache_modpagespeed_sources_extract_dir: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_release_name }}"
+apache_modpagespeed_deb_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_deb_package }}"
 
 ## logrotate variables
 apache_logrotate_enabled: false
