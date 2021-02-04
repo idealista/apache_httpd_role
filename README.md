@@ -21,6 +21,8 @@ This Ansible role installs an Apache HTTP server in a Debian environment. The se
 
 These instructions will get you a copy of the role for your Ansible playbook. Once launched, it will install a [Apache HTTP Server](https://httpd.apache.org/) in a Debian system.
 
+It used to have the option to install logrotate but It has been deprecated. To install logrotate you should use our [logrotate role](https://github.com/idealista/logrotate_role).
+
 ### Prerequisities
 
 Ansible 2.8.0.0 version installed.
@@ -71,6 +73,7 @@ For more information read the [pipenv docs](pipenv-fork.readthedocs.io/en/latest
 
 ```sh
 $ pipenv run molecule test 
+```
 
 ## Built With
 
