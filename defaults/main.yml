@@ -84,10 +84,6 @@ apache_modpagespeed_sources_package_path: "{{ apache_modpagespeed_download_dir }
 apache_modpagespeed_sources_extract_dir: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_release_name }}"
 apache_modpagespeed_deb_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_deb_package }}"
 
-## logrotate variables
-apache_logrotate_enabled: false
-apache_logrotate_cron_settings: {hour: '3', minute: '0', user: 'root'}
-
 ## brotli variables
 apache_brotli_install: false
 apache_brotli_reinstall: false

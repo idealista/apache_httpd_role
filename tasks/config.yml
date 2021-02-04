@@ -115,19 +115,3 @@
     src: apache/service/apache2.service.j2
     dest: /lib/systemd/system/apache2.service
   notify: Restart Apache
-
-- name: Apache_httpd | Template logrotate
-  template:
-    src: apache/logrotate.j2
-    dest: /etc/logrotate.d/apache2
-    mode: 0644
-  when: apache_logrotate_enabled
-
-- name: Apache_httpd | Create a crontab for logrotate
-  cron:
-    name: "Logrotate"
-    hour: "{{ apache_logrotate_cron_settings.hour }}"
-    minute: "{{ apache_logrotate_cron_settings.minute }}"
-    user: "{{ apache_logrotate_cron_settings.user }}"
-    job: "/usr/sbin/logrotate /etc/logrotate.conf > /dev/null 2>&1"
-  when: apache_logrotate_enabled

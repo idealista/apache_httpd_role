@@ -9,11 +9,6 @@
   apt:
     package: "{{ apache_extra_libs }}"
 
-- name: Apache_httpd | Install logrotate (if needed)
-  apt:
-    package: logrotate
-  when: apache_logrotate_enabled
-
 - name: Apache_httpd | Ensure apache group is present
   group:
     name: "{{ apache_group }}"
