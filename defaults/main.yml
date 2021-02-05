@@ -35,8 +35,8 @@ apache_additional_config_folders:
   - sites-enabled
   - conf-enabled
 apache_sites_available_template_path: "{{ apache_configuration_template_path }}/sites-available"
-apache_sites_enabled:
-  - example1
+apache_sites_enabled: []
+#  - example1
 
 # Modules
 ## Default modules

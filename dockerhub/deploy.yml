@@ -1,0 +1,50 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Build Docker Image
+      docker_image:
+        path: "."
+        name: "idealista/httpd"
+
+    - name: Create Docker container
+      docker_container:
+        name: "httpd"
+        hostname: "httpd"
+        image: "idealista/httpd"
+        privileged: true
+
+    - name: Add container to in-memory inventory
+      add_host:
+        name: "httpd"
+        ansible_connection: docker
+
+- name: Execute httpd role in Docker container
+  hosts: httpd
+  roles:
+    - apache_httpd_role
+
+- name: Deploy to Docker Hub
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Commit container file changes to new image
+      command: docker commit \
+        httpd idealista/httpd
+
+    - name: Log into Docker Hub
+      docker_login:
+        email: "{{ docker_hub_email }}"
+        username: "{{ docker_hub_username }}"
+        password: "{{ docker_hub_password }}"
+
+    - name: Tag and push to Docker Hub
+      command: docker push idealista/httpd:latest
+
+    - name: Remove the container
+      docker_container:
+        name: "httpd"
+        state: absent

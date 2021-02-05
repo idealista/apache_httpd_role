@@ -1,5 +1,8 @@
 ---
 
+apache_sites_enabled:
+  - example1
+
 apache_private_tmp: false
 apache_build_dir: /build_apache
 
