@@ -14,7 +14,15 @@
         name: "httpd"
         hostname: "httpd"
         image: "idealista/httpd"
-        privileged: true
+        privileged: false
+        capabilities:
+          - SYS_ADMIN
+        tmpfs:
+          - /tmp
+          - /run
+          - /run/lock
+        volumes:
+          - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
 
     - name: Add container to in-memory inventory
       add_host:
@@ -23,6 +31,8 @@
 
 - name: Execute httpd role in Docker container
   hosts: httpd
+  vars:
+    apache_private_tmp: false
   roles:
     - apache_httpd_role
 
