@@ -8,7 +8,7 @@ Environment=APACHE_STARTED_BY_SYSTEMD=true
 ExecStart={{ apache_install_dir }}/bin/apachectl start
 ExecStop={{ apache_install_dir }}/bin/apachectl stop
 ExecReload={{ apache_install_dir }}/bin/apachectl graceful
-PrivateTmp=true
+PrivateTmp={{ apache_private_tmp }}
 Restart=on-abort
 
 [Install]
