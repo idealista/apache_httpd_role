@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd_role/tree/develop)
+
+## [3.0.0](https://github.com/idealista/apache_httpd_role/tree/3.0.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd_role/compare/2.0.2...3.0.0)
 ### Changed
 - *[#66](https://github.com/idealista/apache_httpd_role/issues/66) Remove logrotate installation from role* @caldito
 - *[#65](https://github.com/idealista/apache_httpd_role/issues/65) ModPageSpeed installation, change role name and unify some modules installation steps* @caldito
