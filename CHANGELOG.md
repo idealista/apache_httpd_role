@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/apache_httpd_role/tree/develop)
+- *[#71](https://github.com/idealista/apache_httpd_role/issues/71) Error in modpagespeed installation* @sorobon
 
 ## [3.0.0](https://github.com/idealista/apache_httpd_role/tree/3.0.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd_role/compare/2.0.2...3.0.0)
