@@ -34,4 +34,4 @@
 
 - name: Apache_httpd | Set apache_modules_so_files fact
   set_fact:
-    apache_modules_so_files: "{{ apache_modules_so_files + apache_modpagespeed_so_files if apache_modules_so_files is defined else apache_modjk_pagespeed_files }}"
+    apache_modules_so_files: "{{ apache_modules_so_files + apache_modpagespeed_so_files if apache_modules_so_files is defined else apache_modpagespeed_so_files }}"
