@@ -5,6 +5,14 @@ apache_user: apache
 apache_group: apache
 
 apache_version: 2.4.46
+apache_download_url: http://archive.apache.org/dist/httpd/httpd-{{ apache_version }}.tar.bz2
+
+apache_required_libs:
+  - libapr1-dev
+  - libaprutil1-dev
+  - gcc
+  - libpcre3-dev
+  - make
 
 apache_build_dir: /tmp/build_apache
 apache_install_dir: /etc/apache2
@@ -67,6 +75,7 @@ apache_default_modules_enabled:
   - status
   - unixd
   - version
+apache_default_modules_with: []
 
 ## mod_jk variables
 apache_modjk_install: false  # Set to true to install mod_jk
@@ -74,6 +83,10 @@ apache_modjk_reinstall: false
 apache_modjk_version: 1.2.48
 apache_modjk_download_dir: /tmp/build_modjk
 apache_modjk_build_dir: "{{ apache_modjk_download_dir }}/tomcat-connectors-{{ apache_modjk_version }}-src/native"
+apache_modjk_url: http://archive.apache.org/dist/tomcat/tomcat-connectors/jk//tomcat-connectors-{{ apache_modjk_version }}-src.tar.gz
+apache_modjk_prerrequisites:
+  - autoconf
+  - libtool-bin
 
 # mod_pagespeed variables
 apache_modpagespeed_install: false  # Set to true to install mod_pagespeed
@@ -83,6 +96,11 @@ apache_modpagespeed_download_dir: /usr/src
 apache_modpagespeed_sources_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_package }}"
 apache_modpagespeed_sources_extract_dir: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_sources_release_name }}"
 apache_modpagespeed_deb_package_path: "{{ apache_modpagespeed_download_dir }}/{{ apache_modpagespeed_deb_package }}"
+apache_modpagespeed_sources_release_name: "incubator-pagespeed-mod-{{ apache_modpagespeed_version }}"
+apache_modpagespeed_sources_package: "{{ apache_modpagespeed_sources_release_name }}.tar.gz"
+apache_modpagespeed_sources_url: "https://github.com/apache/incubator-pagespeed-mod/archive/v{{ apache_modpagespeed_version }}.tar.gz"
+apache_modpagespeed_deb_package: mod-pagespeed-apache-incubating-beta_{{ apache_modpagespeed_version }}-r0_amd64.deb
+apache_modpagespeed_deb_url: "https://dist.apache.org/repos/dist/release/incubator/pagespeed/{{ apache_modpagespeed_version }}/x64/{{ apache_modpagespeed_deb_package }}"
 
 ## brotli variables
 apache_brotli_install: false
@@ -90,3 +108,8 @@ apache_brotli_reinstall: false
 apache_brotli_lib_path: /usr/lib/brotli
 apache_brotli_build_path: /tmp/brotli
 apache_brotli_version: v1.0.9
+apache_brotli_url: https://github.com/google/brotli.git
+apache_brotli_prerrequisites:
+  - git
+  - cmake
+  - build-essential
