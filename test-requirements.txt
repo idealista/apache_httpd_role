@@ -1,4 +1,4 @@
-ansible==2.9.14
-molecule==3.0.4
-docker==4.2.2
-ansible-lint==4.2.0
+ansible==2.9.19
+molecule==3.0.8
+docker==4.4.4
+ansible-lint==4.3.7
