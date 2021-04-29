@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/apache_httpd_role/tree/develop)
 ### Fixed
 - *[#77](https://github.com/idealista/apache_httpd_role/issues/77) Fix build options management* @ftsao
+- *[#77](https://github.com/idealista/apache_httpd_role/issues/77) Added .gitattributes and updated Travis notifications* @ftsao
 - *[#76](https://github.com/idealista/apache_httpd_role/issues/76) Updated test requirements* @ftsao
 
 ## [3.0.1](https://github.com/idealista/apache_httpd_role/tree/3.0.1)
