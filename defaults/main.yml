@@ -75,7 +75,11 @@ apache_default_modules_enabled:
   - status
   - unixd
   - version
-apache_default_modules_with: []
+
+# apache_configure_options: []
+apache_default_options_with:
+  - mpm=event
+# apache_default_options_without: []
 
 ## mod_jk variables
 apache_modjk_install: false  # Set to true to install mod_jk

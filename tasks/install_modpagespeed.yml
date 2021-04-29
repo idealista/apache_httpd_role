@@ -4,6 +4,7 @@
   file:
     path: "{{ apache_modpagespeed_sources_extract_dir }}"
     state: directory
+    mode: 0755
 
 - name: Apache_httpd | Download mod_pagespeed sources
   get_url:
