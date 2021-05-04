@@ -34,7 +34,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
 - src: idealista.apache_httpd_role
-  version: 3.0.0
+  version: 3.1.0
   name: apache_httpd
 ```
 
@@ -77,7 +77,7 @@ $ pipenv run molecule test
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.8.0.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.9.19-green.svg)
 
 ## Versioning
 
