@@ -1,7 +1,7 @@
 ---
 dist: bionic
 language: python
-python: "3.7"
+python: "3.8"
 os: linux
 services:
   - docker
@@ -17,3 +17,9 @@ script:
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email:
+    if: branch = master
+    on_success: change
+    on_failure: always
+    recipients:
+      - desarrollo.benders@idealista.com
