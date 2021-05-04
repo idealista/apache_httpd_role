@@ -9,6 +9,7 @@
   file:
     path: "{{ apache_modjk_download_dir }}"
     state: directory
+    mode: 0755
 
 - name: Apache_httpd | Download mod_jk
   unarchive:

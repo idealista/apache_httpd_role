@@ -114,4 +114,5 @@
   template:
     src: apache/service/apache2.service.j2
     dest: /lib/systemd/system/apache2.service
+    mode: 0644
   notify: Restart Apache

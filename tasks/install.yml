@@ -24,6 +24,7 @@
   file:
     path: "{{ apache_build_dir }}"
     state: directory
+    mode: 0755
 
 - name: Apache_httpd | Download and extract files
   unarchive:
@@ -35,18 +36,31 @@
     group: root
     mode: 0755
 
-- name: Apache_httpd | Define compile-time options
+- name: Apache_httpd | Define compile-time --enable options
   set_fact:
-    apache_configure_enable_modules: "{{ apache_configure_enable_modules | default('') }} {{ '--enable-' + item }}"
+    apache_configure_options: "{{ apache_configure_options | default('') }} {{ '--enable-' + item }}"
   with_items: "{{ apache_default_modules_enabled }}"
+  when: apache_default_modules_enabled is defined
+
+- name: Apache_httpd | Define compile-time --with options
+  set_fact:
+    apache_configure_options: "{{ apache_configure_options  | default('') }} {{ '--with-' + item }}"
+  with_items: "{{ apache_default_options_with }}"
+  when: apache_default_options_with is defined
+
+- name: Apache_httpd | Define compile-time --without options
+  set_fact:
+    apache_configure_options: "{{ apache_configure_options  | default('') }} {{ '--without-' + item }}"
+  with_items: "{{ apache_default_options_without }}"
+  when: apache_default_options_without is defined
 
 - name: Apache_httpd | Add brotli to compile-time options
   set_fact:
-    apache_configure_enable_modules: "{{ apache_configure_enable_modules }} --enable-brotli --with-brotli={{ apache_brotli_lib_path }}"
+    apache_configure_options: "{{ apache_configure_options  | default('') }} --enable-brotli --with-brotli={{ apache_brotli_lib_path }}"
   when: apache_brotli_install
 
 - name: Apache_httpd | Configure installation
-  command: ./configure --prefix={{ apache_install_dir }} {{ apache_configure_enable_modules }}
+  command: "./configure --prefix={{ apache_install_dir }} {{ apache_configure_options }}"
   args:
     chdir: "{{ apache_build_dir }}"
   tags:
