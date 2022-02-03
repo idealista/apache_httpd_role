@@ -4,7 +4,7 @@ galaxy_info:
   author: idealista
   company: Idealista S.A.U.
   description: Apache HTTP Server role
-  min_ansible_version: 4.6.0
+  min_ansible_version: 5.2.0
   license: Apache 2.0
   galaxy-tags:
     - server

@@ -25,7 +25,7 @@ It used to have the option to install logrotate but It has been deprecated. To i
 
 ### Prerequisities
 
-Ansible 4.6.0 version installed.
+Ansible 5.2.0 version installed.
 Inventory destination should be a Debian environment, Stretch, Buster and Bullseye are supported.
 
 ### Installing
@@ -77,7 +77,7 @@ $ pipenv run molecule test
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-4.6.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-5.2.0-green.svg)
 ![Molecule](https://img.shields.io/badge/molecule-3.5.2-green.svg)
 ![Goss](https://img.shields.io/badge/goss-0.3.16-green.svg)
 
