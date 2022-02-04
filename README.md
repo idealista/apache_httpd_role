@@ -25,8 +25,8 @@ It used to have the option to install logrotate but It has been deprecated. To i
 
 ### Prerequisities
 
-Ansible 2.8.0.0 version installed.
-Inventory destination should be a Debian environment, Stretch and Buster are supported.
+Ansible 5.2.0 version installed.
+Inventory destination should be a Debian environment, Stretch, Buster and Bullseye are supported.
 
 ### Installing
 
@@ -34,7 +34,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
 - src: idealista.apache_httpd_role
-  version: 3.1.0
+  version: 3.2.0
   name: apache_httpd
 ```
 
@@ -77,7 +77,9 @@ $ pipenv run molecule test
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.9.19-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-5.2.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-3.5.2-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.16-green.svg)
 
 ## Versioning
 

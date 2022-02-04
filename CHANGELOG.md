@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/apache_httpd_role/tree/develop)
 
+## [3.2.0](https://github.com/idealista/apache_httpd_role/tree/3.2.0)
+## [Full Changelog](https://github.com/idealista/apache_httpd_role/compare/3.1.0...3.2.0)
+### Added
+- *[#83](https://github.com/idealista/apache_httpd_role/issues/83) Support for debian bullseye* @emepege
+
 ## [3.1.0](https://github.com/idealista/apache_httpd_role/tree/3.1.0)
 ## [Full Changelog](https://github.com/idealista/apache_httpd_role/compare/3.0.1...3.1.0)
 ### Fixed

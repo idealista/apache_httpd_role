@@ -10,7 +10,6 @@
   get_url:
     url: "{{ apache_modpagespeed_sources_url }}"
     dest: "{{ apache_modpagespeed_download_dir }}"
-    remote_src: yes
 
 - name: Apache_httpd | Extract mod_pagespeed sources
   unarchive:
@@ -22,7 +21,6 @@
   get_url:
     url: "{{ apache_modpagespeed_deb_url }}"
     dest: "{{ apache_modpagespeed_download_dir }}"
-    remote_src: yes
 
 - name: Apache_httpd | Extract so from deb
   command: "{{ apache_modpagespeed_sources_extract_dir }}/extract_so_from_deb.sh {{ apache_modpagespeed_deb_package_path }}"
